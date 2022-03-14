@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 14 mars 2022 à 14:57
+-- Généré le : lun. 14 mars 2022 à 15:45
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -47,8 +47,12 @@ CREATE TABLE IF NOT EXISTS `biens` (
 --
 
 INSERT INTO `biens` (`reference`, `ville`, `type`, `prix`, `surface`, `nombre de pièce`, `jardin`) VALUES
-(1, 'PARIS', 'Maison', 100000, 100, 10, 1),
-(2, 'PARIS', 'Appa', 50000, 10, 2, 0);
+(10001, 'PARIS', 'Appartement', 50000, 10, 2, 0),
+(20001, 'LILLE', 'Immeuble', 900000, 700, 25, 0),
+(30001, 'POITIERS', 'Local', 15000, 500, 10, 0),
+(40001, 'PARIS', 'Maison', 100000, 100, 10, 1),
+(40002, 'RENNES', 'Maison', 65000, 30, 5, 1),
+(50001, 'MARSEILLE', 'Terrain', 20000, 49, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -63,15 +67,19 @@ CREATE TABLE IF NOT EXISTS `image` (
   `chemin` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `contrainteimage` (`reference`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image`
 --
 
 INSERT INTO `image` (`id`, `reference`, `chemin`) VALUES
-(1, 1, 'khzt'),
-(2, 1, 'ezert');
+(1, 10001, 'azertyui'),
+(2, 20001, 'dfghj'),
+(3, 30001, 'poiuytr'),
+(7, 40001, 'potr'),
+(8, 40002, 'nbvcx'),
+(9, 50001, 'poiuyt');
 
 -- --------------------------------------------------------
 
@@ -81,7 +89,8 @@ INSERT INTO `image` (`id`, `reference`, `chemin`) VALUES
 
 DROP TABLE IF EXISTS `type`;
 CREATE TABLE IF NOT EXISTS `type` (
-  `type` varchar(10) NOT NULL,
+  `type` varchar(11) NOT NULL,
+  `numero` int(11) NOT NULL,
   PRIMARY KEY (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -89,9 +98,12 @@ CREATE TABLE IF NOT EXISTS `type` (
 -- Déchargement des données de la table `type`
 --
 
-INSERT INTO `type` (`type`) VALUES
-('Appa'),
-('Maison');
+INSERT INTO `type` (`type`, `numero`) VALUES
+('Appartement', 1),
+('Immeuble', 2),
+('Local', 3),
+('Maison', 4),
+('Terrain', 5);
 
 -- --------------------------------------------------------
 
