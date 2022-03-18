@@ -5,7 +5,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-
     <?php
     // put your code here
     include_once 'modeles/mesFonctionsAccesBDD.php';
@@ -13,12 +12,6 @@ and open the template in the editor.
     include_once'inc/entete.inc'
     ?>
     <link rel="stylesheet" href="css\cssimmo.css"/>
-    <meta charset="UTF-8">
-    <title></title>
-
-
-    <body>
-
     </body>
 
     <?php
