@@ -5,14 +5,16 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <meta charset="UTF-8">
-        include_once"..\inc\entete.inc
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
+    <?php
+    // put your code here
+    include_once 'modeles/mesFonctionsAccesBDD.php';
+    $lePdo = connexionBDD();
+    include_once'inc/entete.inc'
+    ?>
+    <link rel="stylesheet" href="css\cssimmo.css"/>
     </body>
+
+    <?php
+    include_once 'inc/piedDePage.inc';
+    ?>
 </html>

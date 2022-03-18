@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+
 <html lang="fr">
-    <head>
-        <title>France Immobilier : Achat de biens immobiliers pour particuliers</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="cssimmo.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    </head>
+
+    <title>France Immobilier : Achat de biens immobiliers pour particuliers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\css\cssimmo.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <body>
         <header> 
             <!-- entete de page + navbar -->
@@ -16,6 +16,9 @@
                     <a href="index.html" class="navbar-brand" href="#">
                         <img src="images/logo_dark_transpa.png" class="img-fluid" alt="" width="50%"style="margin-left: 16px;">
                     </a>
+                    <div>
+                        <a href="vuescontroleurs/formConnexion.php" class="nav-link" aria-current="page" href="#">Se connecter</a>
+                    </div>
                     <input type="submit" action="listeBiens.php" name="listeBiens" id="listeBiens" value="Visualiser la liste des biens">
                 </div>
             </nav>

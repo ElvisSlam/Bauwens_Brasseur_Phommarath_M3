@@ -1,10 +1,232 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 7 mars 2022, 16:25:20
-    Author     : sio1
+
+CSS
+
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:'Open Sans', sans-serif;
+
+}
+body{
+    background-image: url(https://s1.1zoom.me/b5353/208/Houses_Villa_Design_Pools_537090_2560x1440.jpg);
+}
+.navbar-brand{
+    margin-left: 5rem;
+}
+.nav-item{
+    margin: 1rem;
+}
+.col{
+    background-color: white;
+    text-align: center;
+}
+.haut{
+    text-align: center;
+    padding: 10px ;
+    background-color : #a4a8b2;
+    color: #edf0f1;
+    margin-top: 80px;
+}
+.mid{
+    text-align: center;
+    background-color : #edf0f1;
+    padding: 10px ;
+    margin : 90px;
+    margin-top: 80px;
+
+}
+
+li, a ,button{
+    font-family:'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+}
+
+
+.cont_liste {
+    background-color: #edf0f1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin : 90px;
+
+}
+.img_liste {
+    flex-basis: 40%;
+    max-width: 70%;
+    height: auto;
+
+}
+
+.desc_bien {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+    padding-left: 20px;
+    color :#24252A;
+}
+.content {
+    background-color: #edf0f1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin : 90px;
+}
+
+.desc {
+    display: flex;
+    font-size: 20px;
+    border: solid;
+    margin : 60px;
+    flex-direction: column;
+}
+
+footer{
+    position: fixed;
+    bottom : 0 ;
+    align-items: center;
+    padding: 10px ;
+    color : #edf0f1;
+    background-color: #24252A;
+    width: 100%;
+
+}
+.img_bien {
+    flex-basis: 40%;
+    max-width: 45%;
+    height: auto;
+    margin : 60px;
+}
+
+#slider {
+    position: relative;
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: left;
+}
+
+#slide {
+    min-width: 600px;
+    min-height: 400px;
+    display: flex;
+    flex-basis: 40%;
+    max-width: 45%;
+    height: auto;
+    margin : 60px;
+    position: left;
+}
+
+#precedent,
+#suivant {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    position: absolute;
+    font-size: 100px;
+    color: rgba(220, 220, 220, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+}
+
+#precedent {
+    left: 0;
+}
+
+#suivant {
+    right: 0;
+}
+
+#slider:hover #precedent,
+#slider:hover #suivant {
+    opacity: 1;
+}.nav-link {
+
+}
+#inscription {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 50em;	/*** Largeur du formulaire ***/
+}
+#titreForm, #piedForm {	/*** Mise en forme du titre et du pied de formulaire ***/
+    font: bold 1.1em arial, hevetica, sans-serif;
+    color: white;
+    background: black;
+    margin: 0;
+    padding: .5em;
+}
+#piedForm {
+    text-align: right; /*** Les boutons sont align�s � droite ***/
+}
+#piedForm input {
+    font-weight: bold; /*** Pour am�liorer la lisibilit� des boutons ***/
+    margin-left: 1em;
+}
+#corpForm {	/*** Mise en fome du corp du formulaire (bordure, couleur du fond...) ***/
+    border: 1px solid black;
+    color: black;
+    background: #efefef;
+    margin: 0;
+    padding: 1em;
+}
+#corpForm fieldset {	/*** Mise en forme des cadres ***/
+    margin: 0;
+    font-style: normal;
+    padding: 0 1em 1em;
+}
+#corpForm legend {	/*** Mise en forme des titres des cadres ***/
+    font-weight: bold;
+    color: black;
+    background: transparent;
+}
+
+#corpForm p {	/*** Mise en forme des lignes du formulaire ***/
+    padding: .2em 0;
+    margin: 0 0 .2em 0;
+}
+
+
+#corpForm fieldset#coordonnees label {	/*** Mise en forme des intitulés de champs ***/
+    float: left;	
+    width: 30%;	/*** Les intitulés prennent 1/3 de la largeur totale du formulaire... ***/
+    text-align: right;	/*** ... et ils sont alignés � droite... ***/
+    margin: 0;
+    padding: 0 .5em 0 0;
+    line-height: 1.8;	/*** ... et centrés verticalement. ***/
+}
+#corpForm label:hover, #piedForm input {
+    cursor: pointer;	/*** Petite astuce pour apprendre aux utilisateurs à cliquer sur les intitulés ***/
+}
+#corpForm label.oblig {
+    font-weight: bold;	/*** Mise en évidence des champs obligatoires ***/
+}
+#corpForm .legende {	/*** Mise en forme des aides contextuelles ***/
+    font-style: italic;
+    color: #666;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+#corpForm a.aide {	/*** Mise en forme des bulles d'aide ***/
+    text-decoration: none;
+}
+#corpForm a.aide img {	/*** Mise en forme de l'image des bulles d'aide ***/
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#corpForm a.aide:hover {	/*** Le curseur de la souris change d'aspect quand il passe au-dessus d'une bulle d'aide ***/
+    cursor: help;
+}

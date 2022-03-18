@@ -1,8 +1,8 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<section>
+            
+            <footer class="container-fluid">
+                <h3>Nous contacter :</h3>
+                <p>Accèdez directement à la page contact pour toutes les informations :<a href="contact.html"> Contact</a></p>
+                <p>© 2022 France Immobilier Tous Droits Réservés</p>
+            </footer>
+            
