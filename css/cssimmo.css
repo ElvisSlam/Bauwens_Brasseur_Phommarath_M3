@@ -192,3 +192,16 @@ input[type=submit]:hover {
     color: #53af57;
     border: 1px solid #53af57;
 }
+
+table{
+  border:1px solid black;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+th, td {
+    border:1px solid black;
+}
