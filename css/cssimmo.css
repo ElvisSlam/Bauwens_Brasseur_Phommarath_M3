@@ -154,79 +154,41 @@ footer{
 }.nav-link {
 
 }
-#inscription {
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: 50em;	/*** Largeur du formulaire ***/
+form {
+    width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-#titreForm, #piedForm {	/*** Mise en forme du titre et du pied de formulaire ***/
-    font: bold 1.1em arial, hevetica, sans-serif;
+#container h1{
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit] {
+    background-color: #53af57;
     color: white;
-    background: black;
-    margin: 0;
-    padding: .5em;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }
-#piedForm {
-    text-align: right; /*** Les boutons sont align�s � droite ***/
-}
-#piedForm input {
-    font-weight: bold; /*** Pour am�liorer la lisibilit� des boutons ***/
-    margin-left: 1em;
-}
-#corpForm {	/*** Mise en fome du corp du formulaire (bordure, couleur du fond...) ***/
-    border: 1px solid black;
-    color: black;
-    background: #efefef;
-    margin: 0;
-    padding: 1em;
-}
-#corpForm fieldset {	/*** Mise en forme des cadres ***/
-    margin: 0;
-    font-style: normal;
-    padding: 0 1em 1em;
-}
-#corpForm legend {	/*** Mise en forme des titres des cadres ***/
-    font-weight: bold;
-    color: black;
-    background: transparent;
-}
-
-#corpForm p {	/*** Mise en forme des lignes du formulaire ***/
-    padding: .2em 0;
-    margin: 0 0 .2em 0;
-}
-
-
-#corpForm fieldset#coordonnees label {	/*** Mise en forme des intitulés de champs ***/
-    float: left;	
-    width: 30%;	/*** Les intitulés prennent 1/3 de la largeur totale du formulaire... ***/
-    text-align: right;	/*** ... et ils sont alignés � droite... ***/
-    margin: 0;
-    padding: 0 .5em 0 0;
-    line-height: 1.8;	/*** ... et centrés verticalement. ***/
-}
-#corpForm label:hover, #piedForm input {
-    cursor: pointer;	/*** Petite astuce pour apprendre aux utilisateurs à cliquer sur les intitulés ***/
-}
-#corpForm label.oblig {
-    font-weight: bold;	/*** Mise en évidence des champs obligatoires ***/
-}
-#corpForm .legende {	/*** Mise en forme des aides contextuelles ***/
-    font-style: italic;
-    color: #666;
-    background: transparent;
-    margin: 0;
-    padding: 0;
-}
-#corpForm a.aide {	/*** Mise en forme des bulles d'aide ***/
-    text-decoration: none;
-}
-#corpForm a.aide img {	/*** Mise en forme de l'image des bulles d'aide ***/
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-#corpForm a.aide:hover {	/*** Le curseur de la souris change d'aspect quand il passe au-dessus d'une bulle d'aide ***/
-    cursor: help;
+input[type=submit]:hover {
+    background-color: white;
+    color: #53af57;
+    border: 1px solid #53af57;
 }
