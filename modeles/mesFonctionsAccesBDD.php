@@ -85,4 +85,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     </div>
 <?php endif; ?>
  * */
+
+
+function getLesBiens($pdo){
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens");
+    $exec=$pdostatement->execute();
+    var_dump($exec);
+    $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
  
