@@ -17,7 +17,7 @@
                         <img src="images/logo_dark_transpa.png" class="img-fluid" alt="" width="50%"style="margin-left: 16px;">
                     </a>
                     <div>
-                        <a href="../vuescontroleurs/formConnexion.php" class="nav-link" aria-current="page" href="#">Se connecter</a>
+                        <a href="vuescontroleurs/formConnexion.php" class="nav-link" aria-current="page" href="#">Se connecter</a>
                     </div>
                     <div>
                         <a href="../vuescontroleurs/listeBiens.php" class="nav-link" aria-current="page">Visualiser la liste des biens</a>
@@ -25,3 +25,4 @@
                 </div>
             </nav>
         </header>
+        

@@ -11,20 +11,36 @@
     </head>
     <body>
         <div id="container">
-            <form action="../inc/menu.inc" method="POST">
-                <div id="titreForm">Connexion au site</div>
-            <div id="corpForm">
-                <fieldset id="coordonnees"><br />
-                    <p>
-                        <label for="eMail" title="Veuillez saisir votre adresse email" class="oblig">* e-Mail :</label>
-                        <input type="email" name="eMail" id="eMail" title="Veuillez saisir votre adresse e-mail" />
-                        
-                    </p>
+        <form action="../inc/menu.inc" method="POST">
+        <div id="titreForm">Connexion au site</div>
+        <div id="corpForm">
+            <fieldset id="coordonnees"><br />
+            <p>
+                <label><b>Nom d'utilisateur</b></label>
+                <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
 
-            </form>
+
+            </p>
+            <p>
+               <label><b>Mot de passe</b></label>
+                <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+
+            </p>
+            <?php
+                if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1 || $err==2)
+                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                }
+                ?>
+
+        </form>
+        </div>
+        <div id="piedForm">
+                    <input type="submit" name="valid" id="valid" value="Se connecter" />
         </div>
     </body>
-    <?php
-    include_once '../inc/piedDePage.inc';
-    ?>
+                <?php
+                include_once '../inc/piedDePage.inc';
+                ?>
 </html>
