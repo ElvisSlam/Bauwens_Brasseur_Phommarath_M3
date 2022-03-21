@@ -13,13 +13,15 @@
             <!-- entete de page + navbar -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a href="index.html" class="navbar-brand" href="#">
+                    <a href="index.html" class="navbar-brand">
                         <img src="images/logo_dark_transpa.png" class="img-fluid" alt="" width="50%"style="margin-left: 16px;">
                     </a>
                     <div>
                         <a href="vuescontroleurs/formConnexion.php" class="nav-link" aria-current="page" href="#">Se connecter</a>
                     </div>
-                    <input type="submit" action="listeBiens.php" name="listeBiens" id="listeBiens" value="Visualiser la liste des biens">
+                    <div>
+                        <a href="../vuescontroleurs/listeBiens.php" class="nav-link" aria-current="page">Visualiser la liste des biens</a>
+                    </div>
                 </div>
             </nav>
         </header>
