@@ -6,38 +6,29 @@
         $lePdo = connexionBDD();
         include_once'../inc/entete.inc'
         ?>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/cssimmo.css" media="screen" type="text/css" />
     </head>
     <body>
         <div id="container">
-        <form action="../inc/menu.inc" method="POST">
-        <div id="titreForm">Connexion au site</div>
-        <div id="corpForm">
-            <fieldset id="coordonnees"><br />
-            <p>
+            <!-- zone de connexion -->
+            
+            <form action="verif.php" method="POST">
+                <h1>Connexion</h1>
+                
                 <label><b>Nom d'utilisateur</b></label>
                 <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
 
-
-            </p>
-            <p>
-               <label><b>Mot de passe</b></label>
+                <label><b>Mot de passe</b></label>
                 <input type="password" placeholder="Entrer le mot de passe" name="password" required>
 
-            </p>
-            <?php
+                <input type="submit" id='submit' value='se connecter' >
+                <?php
                 if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
                     if($err==1 || $err==2)
                         echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
                 }
                 ?>
-
-        </form>
-        </div>
-        <div id="piedForm">
-                    <input type="submit" name="valid" id="valid" value="Se connecter" />
+            </form>
         </div>
     </body>
                 <?php
