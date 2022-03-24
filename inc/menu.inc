@@ -1,24 +1,23 @@
+<?php
+// On prolonge la session
+session_start();
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['login'])) 
+{
+  // Si inexistante ou nulle, on redirige vers le formulaire de login
+  header('Location: formConnexion.php');
+  exit();
+}
+?>
+<!DOCTYPE html>
 <html>
-    <head>
-       <meta charset="utf-8">
-       <link rel="stylesheet" href="../css/cssimmo.css" media="screen" type="text/css" />
-    </head>
-    <body>
-        <div id="container">
-            <!-- zone de connexion -->
-            
-            <form action="../inc/menu.inc" method="POST">
-                <h1>Connexion</h1>
-                
-                <label><b>Nom d'utilisateur</b></label>
-                <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
-
-                <label><b>Mot de passe</b></label>
-                <input type="password" placeholder="Entrer le mot de passe" name="password" required>
-
-                <input type="submit" id='submit' value='LOGIN' >
-                
-            </form>
-        </div>
-    </body>
+  <head>
+    <title>Administration</title>
+  </head>
+  <body>
+ <?php
+    // Ici on est bien loggué, on affiche un message
+    echo 'Bienvenue ', $_SESSION['login'];
+  ?>
+  </body>
 </html>
