@@ -8,4 +8,4 @@ $lePdo = connexionBDD();
 
 
 //var_dump permet d'afficher le contenu d'un objet. Utilisable uniquement lors de test de validation
-var_dump(testlogin($lePdo, 'elvisbauwens@gmail.com'));
+var_dump(testlogin($lePdo, 'elvisbauwens@gmail.com', 'motdepasse1'));
