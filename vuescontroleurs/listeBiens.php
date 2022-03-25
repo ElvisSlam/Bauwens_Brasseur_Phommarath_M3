@@ -11,10 +11,14 @@
                 <th>Type</th>
                 <th>Prix</th>
             </tr>
-        <?php
+            <?php
             include_once '../modeles/mesFonctionsAccesBDD.php';
-            $lePdo=connexionBDD();
-        ?>
+            $lePdo = connexionBDD();
+            $lesBiens = getLesBiens($lePdo);
+            foreach ($lesBiens as $unBien) {
+                echo '<tr> <td>'.$unBien['reference'].'</td><td>'.$unBien['ville'].'</td><td>'.$unBien['type'].'</td><td>'.$unBien['prix'].'</td></tr>';
+            }
+            ?>
         </table>
         <?php
         include_once '../inc/piedDePage.inc';
