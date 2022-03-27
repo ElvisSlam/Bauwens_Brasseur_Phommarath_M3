@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -89,9 +89,23 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 
 function getLesBiens($pdo){
-    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens");
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE '%' AND type LIKE '%'");
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetchAll();
     return $resultat;
 }
  
+
+function getLesVilles($pdo){
+    $pdostatement=$pdo->prepare("SELECT DISTINCT ville FROM biens");
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
+
+function getLesTypes($pdo){
+    $pdostatement=$pdo->prepare("SELECT type FROM type");
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
