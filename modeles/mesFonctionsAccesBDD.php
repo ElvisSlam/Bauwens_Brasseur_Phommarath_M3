@@ -88,8 +88,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
  * */
 
 
-function getLesBiens($pdo){
-    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE '%' AND type LIKE '%'");
+function getLesBiens($pdo, $ville, $type){
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE ':rechVille' AND type LIKE ':rechType'");
+    $bv1=$pdostatement->bindValue(':rechVille',$ville);
+    $bv1=$pdostatement->bindValue(':rechType',$type);
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetchAll();
     return $resultat;
