@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 14 mars 2022 à 15:45
+-- Généré le : jeu. 31 mars 2022 à 20:25
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -117,6 +117,14 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `mdp` varchar(60) NOT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`email`, `mdp`) VALUES
+('antonin@mail.fr', 'antoninpass'),
+('mail@mail.com', 'pass');
 
 --
 -- Contraintes pour les tables déchargées
