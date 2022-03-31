@@ -1,30 +1,28 @@
+<!DOCTYPE html>
 <html>
     <head>
         <?php
         // put your code here
-        include_once '../modeles/mesFonctionsAccesBDD.php';
-        $lePdo = connexionBDD();
         include_once'../inc/entete.inc'
         ?>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/cssimmo.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="../css/cssimmo.css" />
     </head>
     <body>
-        <div id="container">
-            <form action="../inc/menu.inc" method="POST">
-                <div id="titreForm">Connexion au site</div>
-            <div id="corpForm">
-                <fieldset id="coordonnees"><br />
-                    <p>
-                        <label for="eMail" title="Veuillez saisir votre adresse email" class="oblig">* e-Mail :</label>
-                        <input type="email" name="eMail" id="eMail" title="Veuillez saisir votre adresse e-mail" />
-                        
-                    </p>
+        <?php
+        require('../modeles/mesFonctionsAccesBDD.php');
+        session_start();
 
-            </form>
-        </div>
+        
+        ?>
+        <form class="box" action="verif.php" method="post" name="login">
+            <h1 class="box-title">Connexion</h1>
+            <input type="text" class="box-input" name="username" placeholder="Nom d'utilisateur">
+            <input type="password" class="box-input" name="password" placeholder="Mot de passe">
+            <input type="submit" value="Connexion " name="submit" class="box-button">
+
+        </form>
+        <?php
+        include_once '../inc/piedDePage.inc';
+        ?>
     </body>
-    <?php
-    include_once '../inc/piedDePage.inc';
-    ?>
 </html>

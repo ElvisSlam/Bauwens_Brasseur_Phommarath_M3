@@ -13,37 +13,19 @@
             <!-- entete de page + navbar -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a href="index.html" class="navbar-brand" href="#">
+                    <a href="index.html" class="navbar-brand">
                         <img src="images/logo_dark_transpa.png" class="img-fluid" alt="" width="50%"style="margin-left: 16px;">
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="flex-grow: 0">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a href="maison/listmaison.html" class="nav-link" aria-current="page" href="#">Maisons</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="appart/listappart.html" class="nav-link" aria-current="page" href="#">Appartements</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="locaux/listlocaux.html" class="nav-link" aria-current="page" href="#">Locaux</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="immeubles/listimmeubles.html" class="nav-link" aria-current="page" href="#">Immeubles</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="terrains/listterrains.html" class="nav-link" aria-current="page" href="#">Terrains</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="vuecontroleur/formConnexion.php" class="nav-link" aria-current="page" href="#">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="vuescontroleurs/formConnexion.php" class="nav-link" aria-current="page" href="#">Se connecter</a>
-                            </li>
-                        </ul>
+                    <div>
+                        <a href="vuescontroleurs/formConnexion.php" class="nav-link" aria-current="page" href="#">Se connecter</a>
+                    </div>
+                    <div>
+                        <a href="../vuescontroleurs/listeBiens.php" class="nav-link" aria-current="page">Visualiser la liste des biens</a>
+                    </div>
+                    <div>
+                        <a href="../vuescontroleurs/rechercheBien.php" class="nav-link" aria-current="page">Rechercher un bien</a>
                     </div>
                 </div>
             </nav>
         </header>
+        

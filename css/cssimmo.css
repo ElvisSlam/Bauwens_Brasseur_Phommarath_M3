@@ -151,82 +151,149 @@ footer{
 #slider:hover #precedent,
 #slider:hover #suivant {
     opacity: 1;
-}.nav-link {
+}
+.nav-link {
 
 }
-#inscription {
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: 50em;	/*** Largeur du formulaire ***/
+form {
+    width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-#titreForm, #piedForm {	/*** Mise en forme du titre et du pied de formulaire ***/
-    font: bold 1.1em arial, hevetica, sans-serif;
+#container h1{
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit] {
+    background-color: #53af57;
     color: white;
-    background: black;
-    margin: 0;
-    padding: .5em;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }
-#piedForm {
-    text-align: right; /*** Les boutons sont align�s � droite ***/
+input[type=submit]:hover {
+    background-color: white;
+    color: #53af57;
+    border: 1px solid #53af57;
 }
-#piedForm input {
-    font-weight: bold; /*** Pour am�liorer la lisibilit� des boutons ***/
-    margin-left: 1em;
-}
-#corpForm {	/*** Mise en fome du corp du formulaire (bordure, couleur du fond...) ***/
+
+#rechercheBien {
     border: 1px solid black;
-    color: black;
-    background: #efefef;
-    margin: 0;
-    padding: 1em;
-}
-#corpForm fieldset {	/*** Mise en forme des cadres ***/
-    margin: 0;
-    font-style: normal;
-    padding: 0 1em 1em;
-}
-#corpForm legend {	/*** Mise en forme des titres des cadres ***/
-    font-weight: bold;
-    color: black;
-    background: transparent;
+    background-color: white;
+    margin-right: auto;
+    margin-left: auto;
+    border-collapse: collapse;
+    margin-top: 30px;
+    width: 40%;
 }
 
-#corpForm p {	/*** Mise en forme des lignes du formulaire ***/
-    padding: .2em 0;
-    margin: 0 0 .2em 0;
+table {
+    border: 1px solid black;
+    background-color: white;
+    margin-right: auto;
+    margin-left: auto;
+    border-collapse: collapse;
+    margin-top: 30px;
+    width: 50%;
 }
 
+th, td, tr {
+    text-align: center;
+    padding: 10px;
+    border: 2px solid black;
+}
 
-#corpForm fieldset#coordonnees label {	/*** Mise en forme des intitulés de champs ***/
-    float: left;	
-    width: 30%;	/*** Les intitulés prennent 1/3 de la largeur totale du formulaire... ***/
-    text-align: right;	/*** ... et ils sont alignés � droite... ***/
-    margin: 0;
-    padding: 0 .5em 0 0;
-    line-height: 1.8;	/*** ... et centrés verticalement. ***/
+.box {
+    border: 1px solid #c4c4c4;
+    padding: 30px 25px 10px 25px;
+    background: white;
+    margin: 30px auto;
+    width: 360px;
 }
-#corpForm label:hover, #piedForm input {
-    cursor: pointer;	/*** Petite astuce pour apprendre aux utilisateurs à cliquer sur les intitulés ***/
+h1.box-logo a {
+    text-decoration:none;
 }
-#corpForm label.oblig {
-    font-weight: bold;	/*** Mise en évidence des champs obligatoires ***/
+h1.box-title {
+    color: #AEAEAE;
+    background: #f8f8f8;
+    font-weight: 300;
+    padding: 15px 25px;
+    line-height: 30px;
+    font-size: 25px;
+    text-align:center;
+    margin: -27px -26px 26px;
 }
-#corpForm .legende {	/*** Mise en forme des aides contextuelles ***/
-    font-style: italic;
-    color: #666;
-    background: transparent;
-    margin: 0;
+.box-button {
+    border-radius: 5px;
+    background: #d2483c;
+    text-align: center;
+    cursor: pointer;
+    font-size: 19px;
+    width: 100%;
+    height: 51px;
     padding: 0;
-}
-#corpForm a.aide {	/*** Mise en forme des bulles d'aide ***/
-    text-decoration: none;
-}
-#corpForm a.aide img {	/*** Mise en forme de l'image des bulles d'aide ***/
-    margin: 0;
-    padding: 0;
+    color: #fff;
     border: 0;
+    outline:0;
 }
-#corpForm a.aide:hover {	/*** Le curseur de la souris change d'aspect quand il passe au-dessus d'une bulle d'aide ***/
-    cursor: help;
+.box-register
+{
+    text-align:center;
+    margin-bottom:0px;
+}
+.box-register a
+{
+    text-decoration:none;
+    font-size:12px;
+    color:#666;
+}
+.box-input {
+    font-size: 14px;
+    background: black;
+    border: 1px solid #ddd;
+    margin-bottom: 25px;
+    padding-left:10px;
+    border-radius: 5px;
+    width: 347px;
+    height: 50px;
+}
+.box-input:focus {
+    outline: none;
+    border-color:#5c7186;
+}
+.sucess{
+    text-align: center;
+    color: white;
+}
+.sucess a {
+    text-decoration: none;
+    color: #58aef7;
+}
+p.errorMessage {
+    background-color: #e66262;
+    border: #AA4502 1px solid;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    border-radius: 3px;
+}
+
+footer {
+    text-align: center;
 }

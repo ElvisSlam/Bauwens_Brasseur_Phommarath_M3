@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -22,15 +22,16 @@ function ajoutBien($pdo) {
     
 }
 
-function testlogin($pdo, $email) {
-    $pdoStatement = $pdo->prepare("SELECT COUNT(*) as nbMail from utilisateurs where email = :email");
+function testlogin($pdo, $email, $mdp) {
+    $pdoStatement = $pdo->prepare("SELECT Count(*) as nbmail from utilisateurs where email = :email AND mdp = :mdp ");
     $bv1 = $pdoStatement->bindValue(':email', $email);
+    $bv2 = $pdoStatement->bindValue(':mdp', $mdp);
     $execution = $pdoStatement->execute();
     $resultat = $pdoStatement->fetch();
-    if ($resultat[0] != 0)
-        $mailok = false;
-    else
+    if ($resultat != 0)
         $mailok = true;
+    else
+        $mailok = false;
 
     return $mailok;
 }
@@ -85,4 +86,28 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     </div>
 <?php endif; ?>
  * */
+
+
+function getLesBiens($pdo, $ville, $type){
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE ':rechVille' AND type LIKE ':rechType'");
+    $bv1=$pdostatement->bindValue(':rechVille',$ville);
+    $bv1=$pdostatement->bindValue(':rechType',$type);
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
  
+
+function getLesVilles($pdo){
+    $pdostatement=$pdo->prepare("SELECT DISTINCT ville FROM biens");
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
+
+function getLesTypes($pdo){
+    $pdostatement=$pdo->prepare("SELECT type FROM type");
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
