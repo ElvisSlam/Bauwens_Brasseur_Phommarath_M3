@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -45,10 +45,11 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix , $surface, $nbpiece, 
 }
 
 
-function getLesBiens($pdo, $ville, $type){
-    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType");
+function getLesBiens($pdo, $ville, $type, $jardin){
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin");
     $bv1=$pdostatement->bindValue(':rechVille',$ville, PDO::PARAM_STR);
-    $bv1=$pdostatement->bindValue(':rechType',$type, PDO::PARAM_STR);
+    $bv2=$pdostatement->bindValue(':rechType',$type, PDO::PARAM_STR);
+    $bv3=$pdostatement->bindValue(':rechJardin',$jardin, PDO::PARAM_STR);
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetchAll();
     return $resultat;

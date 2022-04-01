@@ -16,7 +16,6 @@ $lePdo = connexionBDD();
             }
             ?>
         </select>
-        </br>
         <label for="rechType">Choisir un type :</label>
         <select name="rechType">
             <option value="%">Aucun</option>
@@ -27,7 +26,18 @@ $lePdo = connexionBDD();
             }
             ?>
         </select>
-        <input type="submit" name="rechValid" value="Rechercher"/>
+        <label for="rechJardin">Jardin :</label>
+        <select name="rechJardin">
+            <option value="%">Non spécifié</option>
+            <option value="1">Avec</option>
+            <option value="0">Sans</option>
+        </select>
+        <label for="rechPrixmin">Prix Minimum :</label>
+        <input type="text" name="rechPrixmin">
+        <label for="rechPrixmax">Prix Maximum :</label>
+        <input type="text" name="rechPrixmax">
+        
+        <input type="submit" name="rechValid" value="Rechercher" size="20"/>
     </form>
 </div>
 </br>
@@ -42,9 +52,10 @@ $lePdo = connexionBDD();
 if (isset($_POST['rechVille'])) {
     $ville = htmlspecialchars($_POST['rechVille']);
     $type = htmlspecialchars($_POST['rechType']);
-    $lesBiens = getLesBiens($lePdo, $ville, $type);
+    $jardin = htmlspecialchars($_POST['rechJardin']);
+    $lesBiens = getLesBiens($lePdo, $ville, $type, $jardin);
     } else {
-        $lesBiens = getLesBiens($lePdo, '%', '%');
+        $lesBiens = getLesBiens($lePdo, '%', '%', '%');
     }
     foreach ($lesBiens as $unBien) {
         echo '<tr> <td>' . $unBien['reference'] . '</td><td>' . $unBien['ville'] . '</td><td>' . $unBien['type'] . '</td><td>' . $unBien['prix'] . '</td></tr>';
