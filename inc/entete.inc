@@ -22,6 +22,9 @@
                     <div>
                         <a href="../vuescontroleurs/listeBiens.php" class="nav-link" aria-current="page">Visualiser la liste des biens</a>
                     </div>
+                    <div>
+                        <a href="../vuescontroleurs/rechercheBien.php" class="nav-link" aria-current="page">Rechercher un bien</a>
+                    </div>
                 </div>
             </nav>
         </header>

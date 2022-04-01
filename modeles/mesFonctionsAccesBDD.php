@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -87,9 +87,29 @@ function testlogin($pdo, $username, $password) {
   <?php endif; ?>
  * */
 
-function getLesBiens($pdo) {
-    $pdostatement = $pdo->prepare("SELECT reference,ville,type,prix FROM biens");
-    $exec = $pdostatement->execute();
-    $resultat = $pdostatement->fetchAll();
+
+
+function getLesBiens($pdo, $ville, $type){
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE ':rechVille' AND type LIKE ':rechType'");
+    $bv1=$pdostatement->bindValue(':rechVille',$ville);
+    $bv1=$pdostatement->bindValue(':rechType',$type);
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetchAll();
     return $resultat;
 }
+ 
+
+function getLesVilles($pdo){
+    $pdostatement=$pdo->prepare("SELECT DISTINCT ville FROM biens");
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
+
+function getLesTypes($pdo){
+    $pdostatement=$pdo->prepare("SELECT type FROM type");
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
+
