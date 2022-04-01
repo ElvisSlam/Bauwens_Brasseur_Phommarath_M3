@@ -9,7 +9,7 @@ and open the template in the editor.
     // put your code here
     include_once 'modeles/mesFonctionsAccesBDD.php';
     $lePdo = connexionBDD();
-    include_once'inc/entete.inc'
+    include_once'inc/enteteindex.inc'
     ?>
     <link rel="stylesheet" href="css\cssimmo.css"/>
     </body>
