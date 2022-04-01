@@ -46,9 +46,9 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix , $surface, $nbpiece, 
 
 
 function getLesBiens($pdo, $ville, $type){
-    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE ':rechVille' AND type LIKE ':rechType'");
-    $bv1=$pdostatement->bindValue(':rechVille',$ville);
-    $bv1=$pdostatement->bindValue(':rechType',$type);
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType");
+    $bv1=$pdostatement->bindValue(':rechVille',$ville, PDO::PARAM_STR);
+    $bv1=$pdostatement->bindValue(':rechType',$type, PDO::PARAM_STR);
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetchAll();
     return $resultat;
