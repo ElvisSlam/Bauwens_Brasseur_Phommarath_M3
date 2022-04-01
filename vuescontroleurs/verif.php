@@ -1,6 +1,6 @@
 <?php
 
-/*
+
   include_once '../modeles/mesFonctionsAccesBDD.php';
   session_start();
 
@@ -18,25 +18,6 @@
   }
 
   mysqli_close($db); // fermer la connexion
- */
+ 
 
-include_once '../modeles/mesFonctionsAccesBDD.php';
-session_start();
-
-$username = $_POST['username'];
-$password = $_POST['password'];
-$lePdo = connexionBDD();
-
-$requete = $connect->prepare('SELECT * FROM utilisateurs');
-$requete->execute();
-$res = $requete->fetchAll();
-
-foreach ($res as $res) {
-    if ($res['username'] == $username) {
-        session_start();
-        $_SESSION['username'] = $username;
-        $id_session = session_id();
-        echo '<meta http-equiv="refresh" content="1; url=../index.php"/>';
-    }
-}
 ?>
