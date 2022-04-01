@@ -9,7 +9,7 @@
   $lePdo = connexionBDD();
 
   $testlogin = testlogin($lePdo, $username, $password);
-  if ($testlogin == true) { // nom d'utilisateur et mot de passe correctes
+  if ($testlogin == true) { 
   $_SESSION['username'] = $username;
   header('Location: menu.php');
   } else {
@@ -17,7 +17,7 @@
 
   }
 
-  mysqli_close($db); // fermer la connexion
+  mysqli_close($db);
 
 /*
 include_once '../modeles/mesFonctionsAccesBDD.php';

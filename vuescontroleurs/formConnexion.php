@@ -11,8 +11,6 @@
         <?php
         require('../modeles/mesFonctionsAccesBDD.php');
         session_start();
-
-        
         ?>
         <form class="box" action="verif.php" method="post" name="login">
             <h1 class="box-title">Connexion</h1>

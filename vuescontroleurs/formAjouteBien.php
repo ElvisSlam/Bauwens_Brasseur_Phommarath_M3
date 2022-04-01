@@ -1,8 +1,31 @@
-<?php
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php
+        // put your code here
+        include_once'../inc/entete.inc'
+        ?>
+        <link rel="stylesheet" href="../css/cssimmo.css" />
+    </head>
+    <body>
+        <?php
+        require('../modeles/mesFonctionsAccesBDD.php');
+        session_start();
+        ?>
+        <form class="box" action="validAjout.php" method="post" name="Ajout">
+            <h1 class="box-title">Ajouter un bien</h1>
+            <input type="text" class="box-input" name="reference" placeholder="Reference">
+            <input type="text" class="box-input" name="ville" placeholder="ville">
+            <input type="text" class="box-input" name="type" placeholder="type">
+            <input type="text" class="box-input" name="prix" placeholder="prix">
+            <input type="text" class="box-input" name="surface" placeholder="surface">
+            <input type="text" class="box-input" name="nbpiece" placeholder="nbpiece">
+            <input type="text" class="box-input" name="jardin" placeholder="jardin">
+            <input type="submit" value="Ajouter " name="submit" class="box-button">
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+        </form>
+        <?php
+        include_once '../inc/piedDePage.inc';
+        ?>
+    </body>
+</html>
