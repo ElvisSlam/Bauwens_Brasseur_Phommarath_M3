@@ -58,7 +58,7 @@ if (isset($_POST['rechVille'])) {
         $lesBiens = getLesBiens($lePdo, '%', '%', '%');
     }
     foreach ($lesBiens as $unBien) {
-        echo '<tr> <td>' . $unBien['reference'] . '</td><td>' . $unBien['ville'] . '</td><td>' . $unBien['type'] . '</td><td>' . $unBien['prix'] . '</td></tr>';
+        echo '<tr> <td>'.'<a href='. 'bien.php'.'>'. $unBien['reference'] . '</td><td>'.'<a href='. 'bien.php'.'>' . $unBien['ville'] . '</td><td>'.'<a href='. 'bien.php'.'>' . $unBien['type'] . '</td><td>'.'<a href='. 'bien.php'.'>' . $unBien['prix'] . '</td></tr> </a>';
     }
 ?>
 </table>
