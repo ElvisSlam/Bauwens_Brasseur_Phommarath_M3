@@ -18,6 +18,7 @@
             <input type="text" class="box-input" name="ville" placeholder="ville">
             <input type="text" class="box-input" name="type" placeholder="type">
             <input type="text" class="box-input" name="prix" placeholder="prix">
+            <input type="text" class="box-input" name="description" placeholder="description">
             <input type="text" class="box-input" name="surface" placeholder="surface">
             <input type="text" class="box-input" name="nbpiece" placeholder="nbpiece">
             <input type="text" class="box-input" name="jardin" placeholder="jardin">

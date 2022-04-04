@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'root';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -31,12 +31,13 @@ function testlogin($pdo, $username, $password) {
 
     return $logok;
 }
-function AjoutBien($pdo, $reference, $ville, $type, $prix , $surface, $nbpiece, $jardin) {
-    $requete = $pdo->prepare("INSERT INTO biens VALUES (:reference,:ville,:type,:prix,:surface,:nbpiece,:jardin)");
+function AjoutBien($pdo, $reference, $ville, $type, $prix ,$description, $surface, $nbpiece, $jardin) {
+    $requete = $pdo->prepare("INSERT INTO biens VALUES (:reference,:ville,:type,:prix,:description,:surface,:nbpiece,:jardin)");
     $bv1 = $requete->bindValue(':reference', $reference, PDO::PARAM_STR);
     $bv2 = $requete->bindValue(':ville', $ville, PDO::PARAM_STR);
     $bv3 = $requete->bindValue(':type', $type, PDO::PARAM_STR);
     $bv4 = $requete->bindValue(':prix', $prix, PDO::PARAM_STR);
+    $bv8 = $requete->bindValue(':description', $description, PDO::PARAM_STR);
     $bv5 = $requete->bindValue(':surface', $surface, PDO::PARAM_STR);
     $bv6 = $requete->bindValue(':nbpiece', $nbpiece, PDO::PARAM_STR);
     $bv7 = $requete->bindValue(':jardin', $jardin, PDO::PARAM_STR);

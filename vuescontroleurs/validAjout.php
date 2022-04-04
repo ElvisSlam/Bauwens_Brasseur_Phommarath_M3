@@ -7,12 +7,13 @@ $reference = $_POST['reference'];
 $ville = $_POST['ville'];
 $type = $_POST['type'];
 $prix = $_POST['prix'];
+$description = $_POST['description'];
 $surface = $_POST['surface'];
 $nbpiece = $_POST['nbpiece'];
 $jardin = $_POST['jardin'];
 $lePdo = connexionBDD();
 
-$testAjout = AjoutBien($lePdo, $reference, $ville, $type, $prix, $surface, $nbpiece, $jardin);
+$testAjout = AjoutBien($lePdo, $reference, $ville, $type, $prix,$description, $surface, $nbpiece, $jardin);
 if ($testAjout == true) {
     echo 'Bien Ajouté';
     header('Location: menu.php');
