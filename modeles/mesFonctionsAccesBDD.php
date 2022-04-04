@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -46,13 +46,17 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix ,$description, $surfac
 }
 
 
-function getLesBiens($pdo, $ville, $type, $jardin){
-    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin");
+function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax){
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax");
     $bv1=$pdostatement->bindValue(':rechVille',$ville, PDO::PARAM_STR);
     $bv2=$pdostatement->bindValue(':rechType',$type, PDO::PARAM_STR);
     $bv3=$pdostatement->bindValue(':rechJardin',$jardin, PDO::PARAM_STR);
+    $bv4=$pdostatement->bindValue(':rechPrixmin',$prixmin, PDO::PARAM_INT);
+    $bv5=$pdostatement->bindValue(':rechPrixmax',$prixmax, PDO::PARAM_INT);
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetchAll();
+    var_dump($pdostatement);
+    var_dump($prixmax);
     return $resultat;
 }
  
@@ -68,5 +72,12 @@ function getLesTypes($pdo){
     $pdostatement=$pdo->prepare("SELECT type FROM type");
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetchAll();
+    return $resultat;
+}
+
+function getPrixMax($pdo){
+    $pdostatement=$pdo->prepare("SELECT MAX(prix) FROM biens");
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetch();
     return $resultat;
 }

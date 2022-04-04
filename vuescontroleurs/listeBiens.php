@@ -16,6 +16,8 @@ $lePdo = connexionBDD();
             }
             ?>
         </select>
+        </br>
+        </br>
         <label for="rechType">Choisir un type :</label>
         <select name="rechType">
             <option value="%">Aucun</option>
@@ -26,12 +28,16 @@ $lePdo = connexionBDD();
             }
             ?>
         </select>
+        </br>
+        </br>
         <label for="rechJardin">Jardin :</label>
         <select name="rechJardin">
             <option value="%">Non spécifié</option>
             <option value="1">Avec</option>
             <option value="0">Sans</option>
         </select>
+        </br>
+        </br>
         <label for="rechPrixmin">Prix Minimum :</label>
         <input type="text" name="rechPrixmin">
         <label for="rechPrixmax">Prix Maximum :</label>
@@ -55,13 +61,15 @@ if (isset($_POST['rechVille'])) {
     $jardin = htmlspecialchars($_POST['rechJardin']);
     $lesBiens = getLesBiens($lePdo, $ville, $type, $jardin);
     } else {
-        $lesBiens = getLesBiens($lePdo, '%', '%', '%');
+        $lesBiens = getLesBiens($lePdo, '%', '%', '%', 0, getPrixMax($lePdo));
     }
     foreach ($lesBiens as $unBien) {
         echo '<tr> <td>' . $unBien['reference'] . '</td><td>' . $unBien['ville'] . '</td><td>' . $unBien['type'] . '</td><td>' . $unBien['prix'] . '</td></tr>';
     }
 ?>
 </table>
+</br>
+</br>
     <?php
     include_once '../inc/piedDePage.inc';
     ?>

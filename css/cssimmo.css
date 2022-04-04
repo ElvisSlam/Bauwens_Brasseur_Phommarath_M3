@@ -92,16 +92,6 @@ li, a ,button{
     flex-direction: column;
 }
 
-footer{
-    position: fixed;
-    bottom : 0 ;
-    align-items: center;
-    padding: 10px ;
-    color : #edf0f1;
-    background-color: #24252A;
-    width: 100%;
-}
-
 .img_bien {
     flex-basis: 40%;
     max-width: 45%;
@@ -296,4 +286,8 @@ p.errorMessage {
 
 footer {
     text-align: center;
+    color: white;
+    background-color: #24252a;
+    width: 100%;
+    padding: 20px;
 }
