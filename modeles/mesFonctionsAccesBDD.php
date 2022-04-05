@@ -55,8 +55,6 @@ function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax){
     $bv5=$pdostatement->bindValue(':rechPrixmax',$prixmax, PDO::PARAM_INT);
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetchAll();
-    var_dump($pdostatement);
-    var_dump($prixmax);
     return $resultat;
 }
  

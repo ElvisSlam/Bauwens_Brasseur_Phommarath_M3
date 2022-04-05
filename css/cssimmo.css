@@ -92,7 +92,6 @@ li, a ,button{
     flex-direction: column;
 }
 
-<<<<<<< HEAD
 footer{
     position: relative;
     bottom : 0 ;
@@ -102,9 +101,6 @@ footer{
     background-color: #24252A;
     width: 100%;
 }
-
-=======
->>>>>>> 62c1ea0e9227887affc39601471b3557a13e3387
 .img_bien {
     flex-basis: 40%;
     max-width: 45%;
@@ -296,7 +292,7 @@ p.errorMessage {
     color: #FFFFFF;
     border-radius: 3px;
 }
-
+/*
 footer {
     text-align: center;
     color: white;
@@ -304,3 +300,4 @@ footer {
     width: 100%;
     padding: 20px;
 }
+*/

@@ -42,7 +42,7 @@ $lePdo = connexionBDD();
         <input type="text" name="rechPrixmin">
         <label for="rechPrixmax">Prix Maximum :</label>
         <input type="text" name="rechPrixmax">
-        
+
         <input type="submit" name="rechValid" value="Rechercher" size="20"/>
     </form>
 </div>
@@ -54,24 +54,24 @@ $lePdo = connexionBDD();
         <th>Type</th>
         <th>Prix</th>
     </tr>
-<?php
-if (isset($_POST['rechVille'])) {
-    $ville = htmlspecialchars($_POST['rechVille']);
-    $type = htmlspecialchars($_POST['rechType']);
-    $jardin = htmlspecialchars($_POST['rechJardin']);
-    $lesBiens = getLesBiens($lePdo, $ville, $type, $jardin);
+    <?php
+    if (isset($_POST['rechVille'])) {
+        $ville = htmlspecialchars($_POST['rechVille']);
+        $type = htmlspecialchars($_POST['rechType']);
+        $jardin = htmlspecialchars($_POST['rechJardin']);
+        $lesBiens = getLesBiens($lePdo, $ville, $type, $jardin, 0, 900000);
     } else {
-        $lesBiens = getLesBiens($lePdo, '%', '%', '%', 0, getPrixMax($lePdo));
+        $lesBiens = getLesBiens($lePdo, '%', '%', '%', 0, 900000);
     }
     foreach ($lesBiens as $unBien) {
-        echo '<tr> <td>'.'<a href='. 'bien.php'.'>'. $unBien['reference'] . '</td><td>'.'<a href='. 'bien.php'.'>' . $unBien['ville'] . '</td><td>'.'<a href='. 'bien.php'.'>' . $unBien['type'] . '</td><td>'.'<a href='. 'bien.php'.'>' . $unBien['prix'] . '</td></tr> </a>';
+        echo '<tr> <td>' . '<a href=' . 'bien.php' . '>' . $unBien['reference'] . '</td><td>' . '<a href=' . 'bien.php' . '>' . $unBien['ville'] . '</td><td>' . '<a href=' . 'bien.php' . '>' . $unBien['type'] . '</td><td>' . '<a href=' . 'bien.php' . '>' . $unBien['prix'] . '</td></tr> </a>';
     }
-?>
+    ?>
 </table>
 </br>
 </br>
-    <?php
-    include_once '../inc/piedDePage.inc';
-    ?>
+<?php
+//include_once '../inc/piedDePage.inc';
+?>
 </body>
 </html>
