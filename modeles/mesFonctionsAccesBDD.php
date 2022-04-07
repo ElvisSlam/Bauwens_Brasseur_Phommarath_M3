@@ -47,7 +47,7 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix ,$description, $surfac
 
 
 function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax){
-    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax");
+    $pdostatement=$pdo->prepare("SELECT reference,ville,type,prix,jardin FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax");
     $bv1=$pdostatement->bindValue(':rechVille',$ville, PDO::PARAM_STR);
     $bv2=$pdostatement->bindValue(':rechType',$type, PDO::PARAM_STR);
     $bv3=$pdostatement->bindValue(':rechJardin',$jardin, PDO::PARAM_STR);
@@ -87,3 +87,16 @@ function getUnBiens($pdo, $reference){
     $resultat=$pdostatement->fetch();
     return $resultat;
 }
+/*
+    $resultatint = intval($resultat[0]);
+    return $resultatint;
+}
+*/
+function getPrixMin($pdo){
+    $pdostatement=$pdo->prepare("SELECT MIN(prix) FROM biens");
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetch();
+    $resultatint = intval($resultat[0]);
+    return $resultatint;
+}
+
