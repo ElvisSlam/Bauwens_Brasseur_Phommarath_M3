@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 31 mars 2022 à 20:25
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Généré le : jeu. 07 avr. 2022 à 17:33
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `ap_mission3`
 --
-CREATE DATABASE IF NOT EXISTS `ap_mission3` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ap_mission3`;
 
 -- --------------------------------------------------------
 
@@ -34,9 +32,10 @@ CREATE TABLE IF NOT EXISTS `biens` (
   `reference` int(10) NOT NULL,
   `ville` varchar(20) NOT NULL,
   `type` varchar(20) NOT NULL,
+  `description` varchar(1000) NOT NULL,
   `prix` int(10) NOT NULL,
   `surface` int(10) NOT NULL,
-  `nombre de pièce` int(5) NOT NULL,
+  `nbpiece` int(5) NOT NULL,
   `jardin` tinyint(1) NOT NULL,
   PRIMARY KEY (`reference`),
   KEY `contrainte` (`type`)
@@ -46,13 +45,13 @@ CREATE TABLE IF NOT EXISTS `biens` (
 -- Déchargement des données de la table `biens`
 --
 
-INSERT INTO `biens` (`reference`, `ville`, `type`, `prix`, `surface`, `nombre de pièce`, `jardin`) VALUES
-(10001, 'PARIS', 'Appartement', 50000, 10, 2, 0),
-(20001, 'LILLE', 'Immeuble', 900000, 700, 25, 0),
-(30001, 'POITIERS', 'Local', 15000, 500, 10, 0),
-(40001, 'PARIS', 'Maison', 100000, 100, 10, 1),
-(40002, 'RENNES', 'Maison', 65000, 30, 5, 1),
-(50001, 'MARSEILLE', 'Terrain', 20000, 49, 0, 0);
+INSERT INTO `biens` (`reference`, `ville`, `type`, `description`, `prix`, `surface`, `nbpiece`, `jardin`) VALUES
+(10001, 'PARIS', 'Appartement', 'un appart a PARIS pour 50 000 €, tu dois dormir debout tellement il est petit après tout c\'est PARIS , 10m² pour 50 000 € c\'est dans la moyenne donc saisissez votre chance . C\'est sans meuble faut pas déconner', 50000, 10, 2, 0),
+(20001, 'LILLE', 'Immeuble', '', 900000, 700, 25, 0),
+(30001, 'POITIERS', 'Local', '', 15000, 500, 10, 0),
+(40001, 'PARIS', 'Maison', '', 100000, 100, 10, 1),
+(40002, 'RENNES', 'Maison', '', 65000, 30, 5, 1),
+(50001, 'MARSEILLE', 'Terrain', '', 20000, 49, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -124,7 +123,8 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 
 INSERT INTO `utilisateurs` (`email`, `mdp`) VALUES
 ('antonin@mail.fr', 'antoninpass'),
-('mail@mail.com', 'pass');
+('mail@mail.com', 'pass'),
+('test', 'test');
 
 --
 -- Contraintes pour les tables déchargées
