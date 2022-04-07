@@ -10,7 +10,6 @@
     <body>
         <?php
         require('../modeles/mesFonctionsAccesBDD.php');
-        session_start();
         ?>
 
         <form class="box" action="verif.php" method="post" name="login">

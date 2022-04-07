@@ -11,7 +11,7 @@
   $testlogin = testlogin($lePdo, $username, $password);
   if ($testlogin == true) { 
   $_SESSION['username'] = $username;
-  header('Location: menu.php');
+  header('Location: menu.php?'.$_SESSION);
   } else {
   header('Location: formConnexion.php?erreur=1');
 

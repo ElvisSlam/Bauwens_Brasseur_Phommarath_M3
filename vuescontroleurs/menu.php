@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <?php
-        // put your code here
-        include_once'../inc/entete.inc'
+        /*if(isset($_SESSION['username'])){
+            echo "bienvenue " . $username;
+        } else {
+            header('Location: formConnexion.php');
+            
+        };
+        include_once'../inc/entete.inc'*/
         ?>
         <link rel="stylesheet" href="../css/cssimmo.css" />
         <meta charset="UTF-8">
