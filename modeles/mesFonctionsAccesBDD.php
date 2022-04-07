@@ -79,3 +79,11 @@ function getPrixMax($pdo){
     $resultat=$pdostatement->fetch();
     return $resultat;
 }
+
+function getUnBiens($pdo, $reference){
+    $pdostatement=$pdo->prepare("SELECT * FROM biens WHERE reference = :reference");
+    $bv1=$pdostatement->bindValue(':reference',$reference, PDO::PARAM_STR);
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetch();
+    return $resultat;
+}

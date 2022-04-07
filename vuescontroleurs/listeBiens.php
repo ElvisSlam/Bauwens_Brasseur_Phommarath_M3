@@ -64,7 +64,7 @@ $lePdo = connexionBDD();
         $lesBiens = getLesBiens($lePdo, '%', '%', '%', 0, 900000);
     }
     foreach ($lesBiens as $unBien) {
-        echo '<tr> <td>' . '<a href=' . 'bien.php' . '>' . $unBien['reference'] . '</td><td>' . '<a href=' . 'bien.php' . '>' . $unBien['ville'] . '</td><td>' . '<a href=' . 'bien.php' . '>' . $unBien['type'] . '</td><td>' . '<a href=' . 'bien.php' . '>' . $unBien['prix'] . '</td></tr> </a>';
+        echo '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference='. $unBien['reference']. '>' . $unBien['reference'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference='. $unBien['reference'] . '>' . $unBien['ville'] . '</td><td>' . '<a href=' . 'bien.php' . '>' . $unBien['type'] . '</td><td>' . '<a href=' . 'bien.php' . '>' . $unBien['prix'] . '</td></tr> </a>';
     }
     ?>
 </table>
