@@ -15,10 +15,8 @@ $lePdo = connexionBDD();
 
 $testAjout = AjoutBien($lePdo, $reference, $ville, $type, $prix,$description, $surface, $nbpiece, $jardin);
 if ($testAjout == true) {
-    echo 'Bien Ajouté';
-    header('Location: menu.php');
+    header('Location: menu.php?bienajouté');
 } else {
-    echo 'Le Bien n a pas été ajouté';
     header('Location: formAjouteBien.php?erreur=1');
 }
 

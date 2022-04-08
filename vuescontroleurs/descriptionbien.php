@@ -21,11 +21,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         $unbien = getUnBiens($lePdo, $ref);
         ?>
         <div class="content">
-            <h2 class="title_bien">Maison T6 Paris 20ème</h2>
+            <h2 class="title_bien"><?php echo ' ' . $unbien['type']. ' T' . $unbien['nbpiece'] . ' ' . $unbien['ville'] ;?></h2>
 
             <script src="../slider.js"></script>
             <div id="slider">
-                <img src="image/maison9.jpeg"class="img_bien" alt="Images du bien immobilier" >
+                <img src="image/maison9.jpeg" class="img_bien" alt="Images du bien immobilier" >
             </div>
             <aside class="desc">
                 <h3><?php echo 'Prix : '.$unbien['prix'] .' €';?></h3>
