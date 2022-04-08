@@ -14,12 +14,7 @@
                         <img src="images/logo_dark_transpa.png" class="img-fluid" alt="" width="50%"style="margin-left: 16px;">
                     </a>
 
-                    <?php if (isset($_SESSION['username'])) { ?>
-                        <a href="menu.php" class="nav-link" aria-current="page" href="page">Menu</a>
-                    <?php } else { ?>                                    
-                        <a href="formConnexion.php" class="nav-link" aria-current="page">Se connecter</a>
-                    <?php } ?>
-
+                    <a href="formConnexion.php" class="nav-link" aria-current="page">Se connecter</a>
                     <a href="listeBiens.php" class="nav-link" aria-current="page">Visualiser la liste des biens</a>
 
                 </div>

@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'root';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -19,7 +19,7 @@ function deconnexionBDD($cnx) {
 }
 
 function testlogin($pdo, $username, $password) {
-    $pdoStatement = $pdo->prepare("SELECT Count(*) FROM utilisateurs WHERE login = :username AND mdp = :password ");
+    $pdoStatement = $pdo->prepare("SELECT Count(*) FROM utilisateurs WHERE email = :username AND mdp = :password ");
     $bv1 = $pdoStatement->bindValue(':username', $username);
     $bv2 = $pdoStatement->bindValue(':password', $password);
     $execution = $pdoStatement->execute();
