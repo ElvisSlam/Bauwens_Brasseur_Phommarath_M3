@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -77,7 +77,8 @@ function getPrixMax($pdo){
     $pdostatement=$pdo->prepare("SELECT MAX(prix) FROM biens");
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetch();
-    return $resultat;
+    $resultatint = intval($resultat[0]);
+    return $resultatint;
 }
 
 function getUnBiens($pdo, $reference){
@@ -87,11 +88,7 @@ function getUnBiens($pdo, $reference){
     $resultat=$pdostatement->fetch();
     return $resultat;
 }
-/*
-    $resultatint = intval($resultat[0]);
-    return $resultatint;
-}
-*/
+
 function getPrixMin($pdo){
     $pdostatement=$pdo->prepare("SELECT MIN(prix) FROM biens");
     $exec=$pdostatement->execute();
