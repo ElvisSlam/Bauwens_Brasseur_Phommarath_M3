@@ -77,7 +77,8 @@ function getPrixMax($pdo){
     $pdostatement=$pdo->prepare("SELECT MAX(prix) FROM biens");
     $exec=$pdostatement->execute();
     $resultat=$pdostatement->fetch();
-    return $resultat;
+    $resultatint = intval($resultat[0]);
+    return $resultatint;
 }
 
 function getUnBiens($pdo, $reference){
@@ -87,11 +88,7 @@ function getUnBiens($pdo, $reference){
     $resultat=$pdostatement->fetch();
     return $resultat;
 }
-/*
-    $resultatint = intval($resultat[0]);
-    return $resultatint;
-}
-*/
+
 function getPrixMin($pdo){
     $pdostatement=$pdo->prepare("SELECT MIN(prix) FROM biens");
     $exec=$pdostatement->execute();
