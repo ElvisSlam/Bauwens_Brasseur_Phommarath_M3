@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -101,5 +101,19 @@ function getPrixMin($pdo){
     $resultat=$pdostatement->fetch();
     $resultatint = intval($resultat[0]);
     return $resultatint;
+}
+
+function ModifBien($pdo, $reference, $ville, $type, $prix ,$description, $surface, $nbpiece, $jardin) {
+    $requete = $pdo->prepare("UPDATE biens SET reference=:modifreference, ville=:modifville, type=:modiftype, prix=:modifprix, description=:modifdescription, surface=:modifsurface, nbpiece=:modifnbpiece, jardin=:modifjardin WHERE reference=:modifreference");
+    $bv1 = $requete->bindValue(':modifreference', $reference, PDO::PARAM_INT);
+    $bv2 = $requete->bindValue(':modifville', $ville, PDO::PARAM_STR);
+    $bv3 = $requete->bindValue(':modiftype', $type, PDO::PARAM_STR);
+    $bv4 = $requete->bindValue(':modifprix', $prix, PDO::PARAM_INT);
+    $bv8 = $requete->bindValue(':modifdescription', $description, PDO::PARAM_STR);
+    $bv5 = $requete->bindValue(':modifsurface', $surface, PDO::PARAM_INT);
+    $bv6 = $requete->bindValue(':modifnbpiece', $nbpiece, PDO::PARAM_INT);
+    $bv7 = $requete->bindValue(':modifjardin', $jardin, PDO::PARAM_INT);
+    $exec = $requete->execute();
+    return $exec;
 }
 
