@@ -3,13 +3,7 @@
 <html>
     <head>
         <?php
-        /*if(isset($_SESSION['username'])){
-            echo "bienvenue " . $username;
-        } else {
-            header('Location: formConnexion.php');
-            
-        };
-        include_once'../inc/entete.inc'*/
+        include_once'../inc/entete.inc'
         ?>
         <link rel="stylesheet" href="../css/cssimmo.css" />
         <meta charset="UTF-8">
