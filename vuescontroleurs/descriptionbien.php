@@ -19,13 +19,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         $lePdo = connexionBDD();
         $ref = $_GET['reference'];
         $unbien = getUnBiens($lePdo, $ref);
+        $uneimage = getimage($lePdo, $ref)
         ?>
         <div class="content">
             <h2 class="title_bien"><?php echo ' ' . $unbien['type']. ' T' . $unbien['nbpiece'] . ' ' . $unbien['ville'] ;?></h2>
 
             <script src="../slider.js"></script>
             <div id="slider">
-                <img src="image/maison9.jpeg" class="img_bien" alt="Images du bien immobilier" >
+                <img src="<?php echo $uneimage['chemin'];?>" class="img_bien" alt="Images du bien immobilier" >
             </div>
             <aside class="desc">
                 <h3><?php echo 'Prix : '.$unbien['prix'] .' €';?></h3>

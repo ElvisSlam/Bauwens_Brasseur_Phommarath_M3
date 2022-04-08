@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'root';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -88,7 +88,13 @@ function getUnBiens($pdo, $reference){
     $resultat=$pdostatement->fetch();
     return $resultat;
 }
-
+function getimage($pdo, $reference) {
+    $pdostatement=$pdo->prepare("SELECT chemin FROM image WHERE reference = :reference");
+    $bv1=$pdostatement->bindValue(':reference',$reference, PDO::PARAM_STR);
+    $exec=$pdostatement->execute();
+    $resultat=$pdostatement->fetch();
+    return $resultat;
+}
 function getPrixMin($pdo){
     $pdostatement=$pdo->prepare("SELECT MIN(prix) FROM biens");
     $exec=$pdostatement->execute();
