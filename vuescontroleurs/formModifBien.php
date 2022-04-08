@@ -27,6 +27,7 @@
         <form class="box" action="deconnexion.php" method="post" name="logout">
         <input type="submit" value="Déconnexion" name="submit" class="box-button">
         </form>
+        
         <?php
         //include_once '../inc/piedDePage.inc';
         ?>
