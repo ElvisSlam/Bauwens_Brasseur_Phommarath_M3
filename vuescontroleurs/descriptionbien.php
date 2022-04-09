@@ -26,7 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
 
             <script src="../slider.js"></script>
             <div id="slider">
-                <img src="<?php echo $uneimage['chemin'];?>" class="img_bien" alt="Images du bien immobilier" >
+                <img src="<?php echo $uneimage['chemin'];?>" class="img_bien" alt="Image du bien immobilier" >
             </div>
             <aside class="desc">
                 <h3><?php echo 'Prix : '.$unbien['prix'] .' €';?></h3>

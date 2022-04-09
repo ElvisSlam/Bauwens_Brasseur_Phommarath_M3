@@ -76,6 +76,7 @@ li, a ,button{
     padding-left: 20px;
     color :#24252A;
 }
+
 .content {
     background-color: #edf0f1;
     display: flex;
@@ -84,12 +85,29 @@ li, a ,button{
     margin : 90px;
 }
 
+.content img {
+    display: flex;
+    width: 40%;
+    height: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.content h2 {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+}
+
 .desc {
     display: flex;
     font-size: 20px;
     border: solid;
-    margin : 60px;
+    margin: 30px;
     flex-direction: column;
+    
 }
 
 footer{
@@ -100,12 +118,6 @@ footer{
     color : #edf0f1;
     background-color: #24252A;
     width: 100%;
-}
-.img_bien {
-    flex-basis: 40%;
-    max-width: 45%;
-    height: auto;
-    margin : 60px;
 }
 
 #slider {
