@@ -22,24 +22,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         $uneimage = getimage($lePdo, $ref)
         ?>
         <div class="content">
-            <h2 class="title_bien"><?php echo ' ' . $unbien['type']. ' T' . $unbien['nbpiece'] . ' ' . $unbien['ville'] ;?></h2>
+            <h2 class="title_bien"><?php echo ' ' . $unbien['type'] . ' T' . $unbien['nbpiece'] . ' ' . $unbien['ville']; ?></h2>
 
             <script src="../slider.js"></script>
             <div id="slider">
-                <img src="<?php echo $uneimage['chemin'];?>" class="img_bien" alt="Image du bien immobilier" >
+                <img src="<?php echo $uneimage['chemin']; ?>" class="img_bien" alt="Image du bien immobilier" >
             </div>
-            <aside class="desc">
-                <h3><?php echo 'Prix : '.$unbien['prix'] .' €';?></h3>
+            <div class="desc" id="descri">
+                <h3><?php echo 'Prix : ' . $unbien['prix'] . ' €'; ?></h3>
                 <p>Caractéristique du bien :</p>
                 <dl>
                     <dt>Superficie :</dt>
-                    <dd><?php echo $unbien['surface'] . ' m²';?></dd>
+                    <dd><?php echo $unbien['surface'] . ' m²'; ?></dd>
                     <dt>Nombre de pièces :</dt>
-                    <dd><?php echo $unbien['nbpiece'] ;?></dd>
+                    <dd><?php echo $unbien['nbpiece']; ?></dd>
                 </dl>
                 <h3>Description :</h3>
-                <?php echo $unbien['description'] ;?>
-            </aside>
+                <?php echo $unbien['description']; ?>
+            </div>
         </div>
+        <button onclick="enregistrerBien()">Télécharger le bien en PDF</button>
+        <script src="../js/html2pdf.bundle.min.js"></script>
+        <script>
+            var descri = document.getElementById('descri');
+            html2pdf(descri);
+        </script>
     </body>
 </html>
