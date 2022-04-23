@@ -26,7 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
 
             <script src="../slider.js"></script>
             <div id="slider">
-                <img src="<?php echo $uneimage['chemin']; ?>" class="img_bien" alt="Image du bien immobilier" >
+                <img src="<?php echo $uneimage['chemin']; ?>" class="img_bien" alt="Image du bien immobilier" id="img_bien">
             </div>
             <div class="desc" id="descri">
                 <h3><?php echo 'Prix : ' . $unbien['prix'] . ' €'; ?></h3>
@@ -44,8 +44,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <button onclick="enregistrerBien()">Télécharger le bien en PDF</button>
         <script src="../js/html2pdf.bundle.min.js"></script>
         <script>
-            var descri = document.getElementById('descri');
-            html2pdf(descri);
+            var descrip = document.getElementById('descri');
+            var descrip_img = document.getElementById('img_bien');
+            var opt = {
+                margin: 1,
+                filename: 'description_bien.pdf',
+                image: { type: 'jpeg', quality: 0.9}
+            };
+            
+            html2pdf().set(opt).from(descrip_img).save();
         </script>
     </body>
 </html>
