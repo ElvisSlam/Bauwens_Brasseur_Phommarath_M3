@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'root';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -116,4 +116,20 @@ function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     $bv7 = $requete->bindValue(':modifjardin', $jardin, PDO::PARAM_INT);
     $exec = $requete->execute();
     return $exec;
+}
+
+function getsurface($pdo, $surface) {
+    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE surface = :surface");
+    $bv1 = $pdostatement->bindValue(':surface', $surface, PDO::PARAM_INT);
+    $exec = $pdostatement->execute();
+    $resultat = $pdostatement->fetch();
+    return $resultat;
+}
+
+function getnbpiece($pdo, $nbpiece) {
+    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE nbpiece = :nbpiece");
+    $bv1 = $pdostatement->bindValue(':nbpiece', $nbpiece, PDO::PARAM_INT);
+    $exec = $pdostatement->execute();
+    $resultat = $pdostatement->fetch();
+    return $resultat;
 }
