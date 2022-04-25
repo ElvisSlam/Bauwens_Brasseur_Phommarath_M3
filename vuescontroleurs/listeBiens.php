@@ -42,6 +42,12 @@ $lePdo = connexionBDD();
         <input type="number" name="rechPrixmin" id="rechPrixmin">
         <label for="rechPrixmax">Prix Maximum :</label>
         <input type="number" name="rechPrixmax" id="rechPrixmax">
+        <br><br>
+        <label for="rechSurface">Surface :</label>
+        <input type="number" name="rechSurface" id="rechSurface">
+        <br><br>
+        <label for="rechPiece">Nombre de Piece :</label>
+        <input type="number" name="rechPiece" id="rechPiece">      
 
         <input type="submit" name="rechValid" value="Rechercher" size="20"/>
     </form>
@@ -64,21 +70,32 @@ $lePdo = connexionBDD();
         $jardin = htmlspecialchars($_POST['rechJardin']);
         $prixmin = htmlspecialchars($_POST['rechPrixmin']);
         $prixmax = htmlspecialchars($_POST['rechPrixmax']);
+        $surface = htmlspecialchars($_POST['rechSurface']);
+        $nbpiece = htmlspecialchars($_POST['rechPiece']);
         if ($_POST['rechPrixmin'] == null) {
             $prixmin = getPrixMin($lePdo);
         }
         if ($_POST['rechPrixmax'] == null) {
             $prixmax = getPrixMax($lePdo);
         }
-        if ($_POST['rechPrixmax'] == null) {
-            $prixmax = getPrixMax($lePdo);
+        if ($_POST['rechSurface'] == null) {
+            $surface = getSurfacemin($lePdo);
         }
-        $lesBiens = getLesBiens($lePdo, $ville, $type, $jardin, $prixmin, $prixmax);
+        if ($_POST['rechPiece'] == null) {
+            $nbpiece = getNbPiecemin($lePdo);
+        }
+        $lesBiens = getLesBiens($lePdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece);
     } else {
-        $lesBiens = getLesBiens($lePdo, '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo));
+        $lesBiens = getLesBiens($lePdo, '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo), getSurfacemin($lePdo), getNbPiecemin($lePdo));
     }
     foreach ($lesBiens as $unBien) {
-        $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['ville'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['type'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['prix'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['surface'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>';
+        $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['ville'] . '</td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['type'] . '</td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['prix'] . '</td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['surface'] . '</td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['nbpiece'] . '</td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>';
         if ($unBien['jardin'] === '1') {
             $info = $info . '🗸' . '</tr> </a>';
         } else {
