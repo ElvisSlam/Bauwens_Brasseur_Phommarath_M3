@@ -46,13 +46,15 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     return $exec;
 }
 
-function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax) {
-    $pdostatement = $pdo->prepare("SELECT reference,ville,type,prix,jardin FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax");
+function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece) {
+    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece");
     $bv1 = $pdostatement->bindValue(':rechVille', $ville, PDO::PARAM_STR);
     $bv2 = $pdostatement->bindValue(':rechType', $type, PDO::PARAM_STR);
     $bv3 = $pdostatement->bindValue(':rechJardin', $jardin, PDO::PARAM_STR);
     $bv4 = $pdostatement->bindValue(':rechPrixmin', $prixmin, PDO::PARAM_INT);
     $bv5 = $pdostatement->bindValue(':rechPrixmax', $prixmax, PDO::PARAM_INT);
+    $bv6 = $pdostatement->bindValue(':rechSurface', $surface, PDO::PARAM_INT);
+    $bv7 = $pdostatement->bindValue(':rechPiece', $nbpiece, PDO::PARAM_INT);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
     return $resultat;
@@ -118,18 +120,34 @@ function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     return $exec;
 }
 
-function getsurface($pdo, $surface) {
-    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE surface = :surface");
+function getSurface($pdo, $surface) {
+    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE surface >= :surface");
     $bv1 = $pdostatement->bindValue(':surface', $surface, PDO::PARAM_INT);
     $exec = $pdostatement->execute();
-    $resultat = $pdostatement->fetch();
+    $resultat = $pdostatement->fetchAll();
     return $resultat;
 }
 
-function getnbpiece($pdo, $nbpiece) {
-    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE nbpiece = :nbpiece");
-    $bv1 = $pdostatement->bindValue(':nbpiece', $nbpiece, PDO::PARAM_INT);
+function getSurfacemin($pdo) {
+    $pdostatement = $pdo->prepare("SELECT MIN(surface) FROM biens");
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetch();
+    $resultatint = intval($resultat[0]);
+    return $resultatint;
+}
+
+function getNbpiece($pdo, $nbpiece) {
+    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE nbpiece >= :nbpiece");
+    $bv1 = $pdostatement->bindValue(':nbpiece', $nbpiece, PDO::PARAM_INT);
+    $exec = $pdostatement->execute();
+    $resultat = $pdostatement->fetchAll();
     return $resultat;
+}
+
+function getNbPiecemin($pdo) {
+    $pdostatement = $pdo->prepare("SELECT MIN(nbpiece) FROM biens");
+    $exec = $pdostatement->execute();
+    $resultat = $pdostatement->fetch();
+    $resultatint = intval($resultat[0]);
+    return $resultatint;
 }

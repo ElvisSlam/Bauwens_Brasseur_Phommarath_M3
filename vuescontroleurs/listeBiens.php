@@ -53,6 +53,8 @@ $lePdo = connexionBDD();
         <th>Ville</th>
         <th>Type</th>
         <th>Prix</th>
+        <th>Surface</th>
+        <th>Nombre de piece</th>
         <th>Jardin</th>
     </tr>
     <?php
@@ -68,12 +70,15 @@ $lePdo = connexionBDD();
         if ($_POST['rechPrixmax'] == null) {
             $prixmax = getPrixMax($lePdo);
         }
+        if ($_POST['rechPrixmax'] == null) {
+            $prixmax = getPrixMax($lePdo);
+        }
         $lesBiens = getLesBiens($lePdo, $ville, $type, $jardin, $prixmin, $prixmax);
     } else {
         $lesBiens = getLesBiens($lePdo, '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo));
     }
     foreach ($lesBiens as $unBien) {
-        $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['ville'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['type'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['prix'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>';
+        $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['ville'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['type'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['prix'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['surface'] . '</td><td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>';
         if ($unBien['jardin'] === '1') {
             $info = $info . '🗸' . '</tr> </a>';
         } else {
