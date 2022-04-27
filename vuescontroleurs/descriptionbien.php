@@ -17,13 +17,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <script type="text/javascript">
             function genPDF() {
                 html2canvas(document.getElementById("description"), {
-                   onrendered: function(canvas) {
-                       
-                       var img = canvas.toDataURL("image/jpeg");
-                       var doc = new jsPDF();
-                       doc.addImage(img, 'JPEG',20,20);
-                       doc.save('test.pdf');
-                   } 
+                    onrendered: function (canvas) {
+                        var img = canvas.toDataURL("image/jpeg");
+                        if (window.screen.availWidth < window.screen.availHeight) {
+                            var doc = new jsPDF({
+                                orientation: 'portrait'
+                            });
+                        }
+                        if (window.screen.availWidth > window.screen.availHeight) {
+                            var doc = new jsPDF({
+                                orientation: 'landscape'
+                            });
+                        }
+                        doc.addImage(img, 'JPEG', 20, 20);
+                        doc.save('description_bien.pdf');
+                    }
                 });
             }
         </script>
@@ -51,7 +59,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
             <p><?php echo $unbien['description']; ?></p>
             <button onclick="genPDF();">Générer PDF</button>
         </div>
-        
+
 
     </body>
 </html>
