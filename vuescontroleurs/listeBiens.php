@@ -89,17 +89,17 @@ $lePdo = connexionBDD();
         $lesBiens = getLesBiens($lePdo, '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo), getSurfacemin($lePdo), getNbPiecemin($lePdo));
     }
     foreach ($lesBiens as $unBien) {
-        $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td>'
-                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['ville'] . '</td>'
-                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['type'] . '</td>'
-                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['prix'] . '</td>'
-                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['surface'] . '</td>'
-                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['nbpiece'] . '</td>'
-                . '<td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>';
+        $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference' . $unBien['reference'] . '>' . $unBien['ville'] . '</a></td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference' . $unBien['reference'] . '>' . $unBien['type'] . '</a></td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference' . $unBien['reference'] . '>' . $unBien['prix'] . '</a></td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference' . $unBien['reference'] . '>' . $unBien['surface'] . '</a></td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference' . $unBien['reference'] . '>' . $unBien['nbpiece'] . '</a></td>'
+                . '<td>' . '<a href=' . 'descriptionbien.php?reference' . $unBien['reference'] . '>';
         if ($unBien['jardin'] === '1') {
-            $info = $info . '🗸' . '</tr> </a>';
+            $info = $info . '🗸' . '</a></tr> ';
         } else {
-            $info = $info . '✗' . '</tr> </a>';
+            $info = $info . '✗' . ' </a></tr>';
         }
         echo $info;
     }
