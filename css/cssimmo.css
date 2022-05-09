@@ -298,7 +298,7 @@ header {
     background-color : white;
 }
 
-.descri img{
-    width: 100px;
+.descri #carousel{
+    width: 400px;
     height: auto;
 }
