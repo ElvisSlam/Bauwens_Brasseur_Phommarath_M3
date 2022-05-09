@@ -18,10 +18,9 @@ function deconnexionBDD($cnx) {
     $cnx = null;
 }
 
-function testlogin($pdo, $username, $password) {
-    $pdoStatement = $pdo->prepare("SELECT Count(*) FROM utilisateurs WHERE email = :username AND mdp = :password ");
+function testlogin($pdo, $username) {
+    $pdoStatement = $pdo->prepare("SELECT Count(*) FROM utilisateurs WHERE email = :username");
     $bv1 = $pdoStatement->bindValue(':username', $username);
-    $bv2 = $pdoStatement->bindValue(':password', $password);
     $execution = $pdoStatement->execute();
     $resultat = $pdoStatement->fetch();
     if ($resultat[0] != 0)
@@ -150,4 +149,12 @@ function getNbPiecemin($pdo) {
     $resultat = $pdostatement->fetch();
     $resultatint = intval($resultat[0]);
     return $resultatint;
+}
+
+function getUser($pdo, $username) {
+    $pdostatement = $pdo->prepare("SELECT * FROM utilisateurs WHERE email = :email");
+    $bv1 = $pdostatement->bindValue(':email', $username, PDO::PARAM_INT);
+    $exec = $pdostatement->execute();
+    $resultat = $pdostatement->fetchAll();
+    return $resultat;
 }

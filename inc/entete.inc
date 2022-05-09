@@ -10,6 +10,20 @@
             <a href="../index.php">
                 <img src="../images/logo_dark_transpa.png" class="img-header" alt="logo">
             </a>
-            <a href="formConnexion.php" aria-current="page"  class="link-header">Se connecter</a>
+
+            <?php
+            session_start();
+            $_SESSION['username'];
+            ?>
+
+            <?php
+            if (isset($_SESSION['username'])) {
+                ?>
+                <a href="menu.php" aria-current="page"  class="link-header">Menu</a>
+                <?php
+            } else {
+                ?>
+                <a href="formConnexion.php" aria-current="page"  class="link-header">Se connecter</a>
+            <?php } ?>
             <a href="listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>
         </header>
