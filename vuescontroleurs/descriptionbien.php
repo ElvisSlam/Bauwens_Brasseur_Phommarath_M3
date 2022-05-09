@@ -8,17 +8,19 @@ include_once'../inc/entete.inc'
         html2canvas(document.getElementById("description"), {
             onrendered: function (canvas) {
                 var img = canvas.toDataURL("image/jpeg");
-                if (window.screen.availWidth < window.screen.availHeight) {
-                    var doc = new jsPDF({
-                        orientation: 'portrait'
-                    });
-                }
-                if (window.screen.availWidth > window.screen.availHeight) {
-                    var doc = new jsPDF({
-                        orientation: 'landscape'
-                    });
-                }
-                doc.addImage(img, 'JPEG', 20, 20);
+                var doc = new jsPDF({
+                    orientation: 'portrait'
+                });
+                const pageWidth = document.width;
+                const pageHeight = document.height;
+
+                const widthRatio = pageWidth / canvas.width;
+                const heightRatio = pageHeight / canvas.height;
+                const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+
+                const canvasWidth = canvas.width * ratio;
+                const canvasHeight = canvas.height * ratio;
+                doc.addImage(img, 'JPEG', 0, 0, canvasWidth, canvasHeight);
                 doc.save('description_bien.pdf');
             }
         });
@@ -31,7 +33,7 @@ $ref = $_GET['reference'];
 $unbien = getUnBiens($lePdo, $ref);
 $uneimage = getimage($lePdo, $ref)
 ?>
-<div class="border bprder-dark bg-light d-flex" id="description">
+<div class="descri" id="description">
     <h2><?php echo ' ' . $unbien['type'] . ' T' . $unbien['nbpiece'] . ' ' . $unbien['ville']; ?></h2>
     <?php
     include_once '../inc/carousel.inc';
