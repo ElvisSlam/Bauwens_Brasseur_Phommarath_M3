@@ -23,7 +23,7 @@ $res = $requete->fetchAll();
  */
 
 foreach ($res as $result) {
-    if ($result['email'] == $username && password_verify($password, $result['mdp'])) {
+    if ($result['email'] == $username && password_verify($password,$result['mdp'])) {
         session_start();
         $_SESSION['username'] = 'oui';
         $id_session = session_id();
