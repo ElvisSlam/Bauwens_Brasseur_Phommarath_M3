@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'root';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -157,4 +157,11 @@ function getUser($pdo, $username) {
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
     return $resultat;
+}
+
+function Supprimerbiens($pdo, $reference) {
+    $pdostatement = $pdo->prepare("Delete from biens WHERE reference = :ref");
+    $bv1 = $pdostatement->bindValue(':ref', $reference);
+    $exec = $pdostatement->execute();
+    return $exec;
 }
