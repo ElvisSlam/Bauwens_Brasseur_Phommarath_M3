@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -90,7 +90,7 @@ function getUnBiens($pdo, $reference) {
 }
 
 function getimage($pdo, $reference) {
-    $pdostatement = $pdo->prepare("SELECT chemin FROM image WHERE reference = :reference");
+    $pdostatement = $pdo->prepare("SELECT * FROM image WHERE reference = :reference");
     $bv1 = $pdostatement->bindValue(':reference', $reference, PDO::PARAM_STR);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetch();

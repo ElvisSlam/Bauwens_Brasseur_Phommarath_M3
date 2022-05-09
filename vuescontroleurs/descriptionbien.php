@@ -31,9 +31,11 @@ $ref = $_GET['reference'];
 $unbien = getUnBiens($lePdo, $ref);
 $uneimage = getimage($lePdo, $ref)
 ?>
-<div class="content" id="description">
+<div class="border bprder-dark bg-light d-flex" id="description">
     <h2><?php echo ' ' . $unbien['type'] . ' T' . $unbien['nbpiece'] . ' ' . $unbien['ville']; ?></h2>
-    <img src="<?php echo $uneimage['chemin']; ?>" class="img_bien" alt="Image du bien immobilier" id="img_bien">
+    <?php
+    include_once '../inc/carousel.inc';
+    ?>
     <h3><?php echo 'Prix : ' . $unbien['prix'] . ' €'; ?></h3>
     <p>Caractéristique du bien :</p>
     <dl>
@@ -44,8 +46,8 @@ $uneimage = getimage($lePdo, $ref)
     </dl>
     <h3>Description :</h3>
     <p><?php echo $unbien['description']; ?></p>
-    <button onclick="genPDF();">Générer PDF</button>
 </div>
+<button onclick="genPDF();">Générer PDF</button>
 <?php
 //include_once '../inc/piedDePage.inc';
 ?>
