@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
--- Client :  localhost
--- Généré le :  Lun 25 Avril 2022 à 13:17
--- Version du serveur :  5.7.11
--- Version de PHP :  7.0.3
+-- Hôte : 127.0.0.1:3306
+-- Généré le : lun. 09 mai 2022 à 14:55
+-- Version du serveur :  5.7.31
+-- Version de PHP : 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,8 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `ap_mission3`
+-- Base de données : `ap_mission3`
 --
+CREATE DATABASE IF NOT EXISTS `ap_mission3` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ap_mission3`;
 
 -- --------------------------------------------------------
 
@@ -26,7 +29,8 @@ SET time_zone = "+00:00";
 -- Structure de la table `biens`
 --
 
-CREATE TABLE `biens` (
+DROP TABLE IF EXISTS `biens`;
+CREATE TABLE IF NOT EXISTS `biens` (
   `reference` int(10) NOT NULL,
   `ville` varchar(20) NOT NULL,
   `type` varchar(20) NOT NULL,
@@ -34,11 +38,13 @@ CREATE TABLE `biens` (
   `prix` int(10) NOT NULL,
   `surface` int(10) NOT NULL,
   `nbpiece` int(5) NOT NULL,
-  `jardin` tinyint(1) NOT NULL
+  `jardin` tinyint(1) NOT NULL,
+  PRIMARY KEY (`reference`),
+  KEY `contrainte` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `biens`
+-- Déchargement des données de la table `biens`
 --
 
 INSERT INTO `biens` (`reference`, `ville`, `type`, `description`, `prix`, `surface`, `nbpiece`, `jardin`) VALUES
@@ -55,23 +61,28 @@ INSERT INTO `biens` (`reference`, `ville`, `type`, `description`, `prix`, `surfa
 -- Structure de la table `image`
 --
 
-CREATE TABLE `image` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `image`;
+CREATE TABLE IF NOT EXISTS `image` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `reference` int(10) NOT NULL,
-  `chemin` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `chemin` varchar(100) NOT NULL,
+  `chemin2` varchar(100) DEFAULT NULL,
+  `chemin3` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `contrainteimage` (`reference`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `image`
+-- Déchargement des données de la table `image`
 --
 
-INSERT INTO `image` (`id`, `reference`, `chemin`) VALUES
-(1, 10001, '../images/appart1.jpeg'),
-(2, 20001, 'dfghj'),
-(3, 30001, 'poiuytr'),
-(7, 40001, 'potr'),
-(8, 40002, 'nbvcx'),
-(9, 50001, 'poiuyt');
+INSERT INTO `image` (`id`, `reference`, `chemin`, `chemin2`, `chemin3`) VALUES
+(1, 10001, '../images/appart1.jpeg', '../images/cuisine1.jpeg', '../images/sdb.jpeg'),
+(2, 20001, 'dfghj', NULL, NULL),
+(3, 30001, 'poiuytr', NULL, NULL),
+(7, 40001, 'potr', NULL, NULL),
+(8, 40002, 'nbvcx', NULL, NULL),
+(9, 50001, 'poiuyt', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -79,13 +90,15 @@ INSERT INTO `image` (`id`, `reference`, `chemin`) VALUES
 -- Structure de la table `type`
 --
 
-CREATE TABLE `type` (
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE IF NOT EXISTS `type` (
   `type` varchar(11) NOT NULL,
-  `numero` int(11) NOT NULL
+  `numero` int(11) NOT NULL,
+  PRIMARY KEY (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `type`
+-- Déchargement des données de la table `type`
 --
 
 INSERT INTO `type` (`type`, `numero`) VALUES
@@ -101,60 +114,22 @@ INSERT INTO `type` (`type`, `numero`) VALUES
 -- Structure de la table `utilisateurs`
 --
 
-CREATE TABLE `utilisateurs` (
+DROP TABLE IF EXISTS `utilisateurs`;
+CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `email` varchar(60) NOT NULL,
-  `mdp` varchar(500) NOT NULL
+  `mdp` varchar(500) NOT NULL,
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `utilisateurs`
+-- Déchargement des données de la table `utilisateurs`
 --
 
 INSERT INTO `utilisateurs` (`email`, `mdp`) VALUES
-('Boss', ' . $2y$10$RD5LplARoKKD44RLgD4Fc.n8LYTooMknLd2sqYTZIz5zD2A7NjPL. .'),
-('test', 'test');
+('admin', ' . $2y$10$pyPgduj7cPzQKoq0kWX3mePnVZn9nRhBDZJDnEV4YvqNS4J83REI6 .');
 
 --
--- Index pour les tables exportées
---
-
---
--- Index pour la table `biens`
---
-ALTER TABLE `biens`
-  ADD PRIMARY KEY (`reference`),
-  ADD KEY `contrainte` (`type`);
-
---
--- Index pour la table `image`
---
-ALTER TABLE `image`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `contrainteimage` (`reference`);
-
---
--- Index pour la table `type`
---
-ALTER TABLE `type`
-  ADD PRIMARY KEY (`type`);
-
---
--- Index pour la table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`email`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `image`
---
-ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- Contraintes pour les tables exportées
+-- Contraintes pour les tables déchargées
 --
 
 --
@@ -168,6 +143,7 @@ ALTER TABLE `biens`
 --
 ALTER TABLE `image`
   ADD CONSTRAINT `contrainteimage` FOREIGN KEY (`reference`) REFERENCES `biens` (`reference`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -299,5 +299,6 @@ header {
 }
 
 .descri img{
-    padding-top
+    width: 100px;
+    height: auto;
 }
