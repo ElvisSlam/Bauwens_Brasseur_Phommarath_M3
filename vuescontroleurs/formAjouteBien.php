@@ -13,6 +13,7 @@ session_start();
     <input type="text" class="box-input" name="surface" placeholder="surface">
     <input type="text" class="box-input" name="nbpiece" placeholder="nbpiece">
     <input type="text" class="box-input" name="jardin" placeholder="jardin">
+    <input type="text" class="box-input" name="chemin" placeholder="chemin de l'image">
     <input type="submit" value="Ajouter " name="submit" class="box-button">
 </form>
 <form class="box" action="deconnexion.php" method="post" name="logout">

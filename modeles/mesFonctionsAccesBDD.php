@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'root';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -41,6 +41,14 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     $bv5 = $requete->bindValue(':surface', $surface, PDO::PARAM_STR);
     $bv6 = $requete->bindValue(':nbpiece', $nbpiece, PDO::PARAM_STR);
     $bv7 = $requete->bindValue(':jardin', $jardin, PDO::PARAM_STR);
+    $exec = $requete->execute();
+    return $exec;
+}
+
+function ajoutimage($pdo, $reference, $chemin) {
+    $requete = $pdo->prepare("INSERT INTO image(reference, chemin) VALUES (null, :reference,:chemin) ");
+    $bv1 = $requete->bindValue(':reference', $reference, PDO::PARAM_STR);
+    $bv2 = $requete->bindValue(':chemin', $chemin, PDO::PARAM_STR);
     $exec = $requete->execute();
     return $exec;
 }
