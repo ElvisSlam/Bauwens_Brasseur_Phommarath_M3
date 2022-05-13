@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -45,8 +45,25 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     return $exec;
 }
 
-function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $tri) {
-    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE reference LIKE :rechRef AND ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece ORDER BY :formTri");
+function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $lesTris) {
+    $tri ="";
+    if (is_array($lesTris)){
+        var_dump($lesTris);
+    foreach($lesTris as $unTri){
+        if($unTri!=1){
+            $tri=$tri.$unTri.",";
+        }
+    }
+    $tri = substr($tri,0,strlen($tri)-1);
+    //var_dump($tri);
+    }
+    else
+        $tri="1";
+    
+    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE reference LIKE :rechRef "
+            . "AND ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin "
+            . "AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece "
+            . "ORDER BY ". $tri);
     $bv1 = $pdostatement->bindValue(':rechVille', $ville, PDO::PARAM_STR);
     $bv2 = $pdostatement->bindValue(':rechType', $type, PDO::PARAM_STR);
     $bv3 = $pdostatement->bindValue(':rechJardin', $jardin, PDO::PARAM_STR);
@@ -55,7 +72,6 @@ function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixma
     $bv6 = $pdostatement->bindValue(':rechSurface', $surface, PDO::PARAM_INT);
     $bv7 = $pdostatement->bindValue(':rechPiece', $nbpiece, PDO::PARAM_INT);
     $bv8 = $pdostatement->bindValue(':rechRef', $reference, PDO::PARAM_STR);
-    $bv9 = $pdostatement->bindValue(':rechRef', $reference, PDO::PARAM_STR);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
     return $resultat;
@@ -187,13 +203,4 @@ function getLaRef($pdo) {
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetch();
     return $resultat;
-}
-
-function getLeTri() {
-    $triville = $_POST["triVille"];
-    $tritype = $_POST["triType"];
-    $triprix = $_POST["triPrix"];
-    var_dump($triville);
-    var_dump($triType);
-    var_dump($triPrix);
 }

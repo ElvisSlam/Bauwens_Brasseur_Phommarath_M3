@@ -70,24 +70,24 @@ $lePdo = connexionBDD();
         <p>Trier sur :</p>
         <label for="triVille">Ville :</label>
         <select name="triVille" id="triVille">
-            <option value="1">Croissant</option>
-            <option value="2">Décroissant</option>
+            <option value="1" selected>Pas de tri</option>
+            <option value="ville ASC">Croissant</option>
+            <option value="ville DESC">Décroissant</option>
         </select><br>
         <label for="triType">Type :</label>
         <select name="triType" id="triType">
-            <option value="1">Croissant</option>
-            <option value="2">Décroissant</option>
+            <option value="1" selected>Pas de tri</option>
+            <option value="type ASC">Croissant</option>
+            <option value="type DESC">Décroissant</option>
         </select><br>
         <label for="triPrix">Prix :</label>
         <select name="triPrix" id="triPrix">
-            <option value="1">Croissant</option>
-            <option value="2">Décroissant</option>
+            <option value="1" selected>Pas de tri</option>
+            <option value="prix ASC">Croissant</option>
+            <option value="prix DESC">Décroissant</option>
         </select><br>
         <input type="submit" name="triValid" value="Trier">
     </form>
-    <?php
-    getLeTri();
-    ?>
 </div>
 <br>
 <table>
@@ -101,6 +101,11 @@ $lePdo = connexionBDD();
         <th>Jardin</th>
     </tr>
     <?php
+    if(isset($_POST['triVille'])){
+        $leTri = array($_POST['triVille'], $_POST['triType'], $_POST['triPrix']);
+    } else {
+        $leTri = " 1";
+    }
     if (isset($_POST['rechVille'])) {
         $reference = htmlspecialchars($_POST['rechRef']);
         $ville = htmlspecialchars($_POST['rechVille']);
@@ -125,9 +130,9 @@ $lePdo = connexionBDD();
         if ($_POST['rechRef'] == null) {
             $reference = getLaRef($lePdo);
         }
-        $lesBiens = getLesBiens($lePdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece);
+        $lesBiens = getLesBiens($lePdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $leTri);
     } else {
-        $lesBiens = getLesBiens($lePdo, '%', '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo), getSurfacemin($lePdo), getNbPiecemin($lePdo));
+        $lesBiens = getLesBiens($lePdo, '%', '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo), getSurfacemin($lePdo), getNbPiecemin($lePdo), $leTri);
     }
     foreach ($lesBiens as $unBien) {
         $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td>'
