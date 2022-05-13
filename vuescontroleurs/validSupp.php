@@ -3,7 +3,7 @@
 include_once '../modeles/mesFonctionsAccesBDD.php';
 session_start();
 
-$reference = $_POST['reference'];
+$reference = $_POST['ref'];
 $lePdo = connexionBDD();
 $testdeleteimage = SuppImage($lePdo, $reference);
 
