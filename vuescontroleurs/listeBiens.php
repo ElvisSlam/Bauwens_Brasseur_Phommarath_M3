@@ -64,6 +64,7 @@ $lePdo = connexionBDD();
 
         <input type="submit" name="rechValid" value="Rechercher" size="20"/>
     </form>
+    
     <form id="triBien" method="post" action="#">
         <h2>Trier les biens :</h2><br>
         <p>Trier sur :</p>
@@ -84,6 +85,9 @@ $lePdo = connexionBDD();
         </select><br>
         <input type="submit" name="triValid" value="Trier">
     </form>
+    <?php
+    getLeTri();
+    ?>
 </div>
 <br>
 <table>

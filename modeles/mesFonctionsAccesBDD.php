@@ -45,8 +45,8 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     return $exec;
 }
 
-function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece) {
-    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE reference LIKE :rechRef AND ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece");
+function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $tri) {
+    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE reference LIKE :rechRef AND ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece ORDER BY :formTri");
     $bv1 = $pdostatement->bindValue(':rechVille', $ville, PDO::PARAM_STR);
     $bv2 = $pdostatement->bindValue(':rechType', $type, PDO::PARAM_STR);
     $bv3 = $pdostatement->bindValue(':rechJardin', $jardin, PDO::PARAM_STR);
@@ -55,6 +55,7 @@ function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixma
     $bv6 = $pdostatement->bindValue(':rechSurface', $surface, PDO::PARAM_INT);
     $bv7 = $pdostatement->bindValue(':rechPiece', $nbpiece, PDO::PARAM_INT);
     $bv8 = $pdostatement->bindValue(':rechRef', $reference, PDO::PARAM_STR);
+    $bv9 = $pdostatement->bindValue(':rechRef', $reference, PDO::PARAM_STR);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
     return $resultat;
@@ -106,8 +107,8 @@ function getPrixMin($pdo) {
     return $resultatint;
 }
 
-function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin, $tri) {
-    $requete = $pdo->prepare("UPDATE biens SET reference=:modifreference, ville=:modifville, type=:modiftype, prix=:modifprix, description=:modifdescription, surface=:modifsurface, nbpiece=:modifnbpiece, jardin=:modifjardin WHERE reference=:modifreference ORDER BY ". $tri);
+function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin) {
+    $requete = $pdo->prepare("UPDATE biens SET reference=:modifreference, ville=:modifville, type=:modiftype, prix=:modifprix, description=:modifdescription, surface=:modifsurface, nbpiece=:modifnbpiece, jardin=:modifjardin WHERE reference=:modifreference");
     $bv1 = $requete->bindValue(':modifreference', $reference, PDO::PARAM_INT);
     $bv2 = $requete->bindValue(':modifville', $ville, PDO::PARAM_STR);
     $bv3 = $requete->bindValue(':modiftype', $type, PDO::PARAM_STR);
@@ -186,4 +187,13 @@ function getLaRef($pdo) {
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetch();
     return $resultat;
+}
+
+function getLeTri() {
+    $triville = $_POST["triVille"];
+    $tritype = $_POST["triType"];
+    $triprix = $_POST["triPrix"];
+    var_dump($triville);
+    var_dump($triType);
+    var_dump($triPrix);
 }
