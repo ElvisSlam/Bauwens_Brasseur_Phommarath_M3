@@ -1,0 +1,26 @@
+<?php
+include_once'../inc/entete.inc';
+require('../modeles/mesFonctionsAccesBDD.php');
+?>
+<form class="box" action="validSupp.php" method="post" name="Supp">
+    <label for="rechRef">Choisir une reference :</label>
+    <select name="rechRef" id="rechRef">
+        <option value="%">Aucune</option>
+        <?php
+        $lePdo = connexionBDD();
+        $lesRef = getLesRefs($lePdo);
+        foreach ($lesRef as $uneRef) {
+            echo '<option value="' . $uneRef['reference'] . '">' . $uneRef['reference'] . '</option>';
+        }
+        ?>
+    </select>
+    <input type="submit" value="Supprimer" name="submit" class="box-button">
+</form>
+<form class="box" action="deconnexion.php" method="post" name="logout">
+    <input type="submit" value="Déconnexion" name="submit" class="box-button">
+</form>
+<?php
+//include_once '../inc/piedDePage.inc';
+?>
+</body>
+</html>
