@@ -1,7 +1,6 @@
 <?php
 include_once'../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
-session_start();
 ?>
 <form class="box" action="validModif.php" method="post" name="Modifier">
     <h1 class="box-title">Modifier un bien</h1>
