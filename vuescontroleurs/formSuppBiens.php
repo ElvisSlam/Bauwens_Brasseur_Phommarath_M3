@@ -2,9 +2,13 @@
 include_once'../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
 ?>
-<form class="box" action="validSupp.php" method="post" name="Supp">
-    <label for="rechRef">Choisir une reference :</label>
-    <select name="rechRef" id="rechRef">
+<form class="box" action="validSupp.php" method="post" name="Supp" onsubmit="if (confirm('Demande de confirmation pour la suppression \n')) {
+            return true;
+        } else {
+            return false;
+        }">
+    <label for="ref">Choisir une reference :</label>
+    <select name="ref" id="ref">
         <option value="%">Aucune</option>
         <?php
         $lePdo = connexionBDD();
