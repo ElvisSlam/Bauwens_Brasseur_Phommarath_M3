@@ -1,7 +1,7 @@
 <?php
 include_once'../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
-session_start();
+
 ?>
 <form class="box" action="validAjout.php" method="post" name="Ajout">
     <h1 class="box-title">Ajouter un bien</h1>

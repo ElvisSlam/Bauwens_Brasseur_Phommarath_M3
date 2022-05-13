@@ -6,6 +6,19 @@ $lePdo = connexionBDD();
 <div>
     <form id="rechercheBien" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <h2>Rechercher un bien :</h2>
+        <label for="rechRef">Choisir une reference :</label>
+        <select name="rechRef" id="rechRef">
+            <option value="%">Aucune</option>
+            <?php
+            $lePdo = connexionBDD();
+            $lesRef = getLesRefs($lePdo);
+            foreach ($lesRef as $uneRef) {
+                echo '<option value="' . $uneRef['reference'] . '">' . $uneRef['reference'] . '</option>';
+            }
+            ?>
+        </select>
+        <br>
+        <br>
         <label for="rechVille">Choisir une ville :</label>
         <select name="rechVille" id="rechVille">
             <option value="%">Aucune</option>
@@ -85,6 +98,7 @@ $lePdo = connexionBDD();
     </tr>
     <?php
     if (isset($_POST['rechVille'])) {
+        $reference = htmlspecialchars($_POST['rechRef']);
         $ville = htmlspecialchars($_POST['rechVille']);
         $type = htmlspecialchars($_POST['rechType']);
         $jardin = htmlspecialchars($_POST['rechJardin']);
@@ -104,9 +118,12 @@ $lePdo = connexionBDD();
         if ($_POST['rechPiece'] == null) {
             $nbpiece = getNbPiecemin($lePdo);
         }
-        $lesBiens = getLesBiens($lePdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece);
+        if ($_POST['rechRef'] == null) {
+            $reference = getLaRef($lePdo);
+        }
+        $lesBiens = getLesBiens($lePdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece);
     } else {
-        $lesBiens = getLesBiens($lePdo, '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo), getSurfacemin($lePdo), getNbPiecemin($lePdo));
+        $lesBiens = getLesBiens($lePdo, '%', '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo), getSurfacemin($lePdo), getNbPiecemin($lePdo));
     }
     foreach ($lesBiens as $unBien) {
         $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td>'
