@@ -51,6 +51,26 @@ $lePdo = connexionBDD();
 
         <input type="submit" name="rechValid" value="Rechercher" size="20"/>
     </form>
+    <form id="triBien" method="post" action="#">
+        <h2>Trier les biens :</h2><br>
+        <p>Trier sur :</p>
+        <label for="triVille">Ville :</label>
+        <select name="triVille" id="triVille">
+            <option value="1">Croissant</option>
+            <option value="2">Décroissant</option>
+        </select><br>
+        <label for="triType">Type :</label>
+        <select name="triType" id="triType">
+            <option value="1">Croissant</option>
+            <option value="2">Décroissant</option>
+        </select><br>
+        <label for="triPrix">Prix :</label>
+        <select name="triPrix" id="triPrix">
+            <option value="1">Croissant</option>
+            <option value="2">Décroissant</option>
+        </select><br>
+        <input type="submit" name="triValid" value="Trier">
+    </form>
 </div>
 <br>
 <table>

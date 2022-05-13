@@ -3,7 +3,7 @@
 function connexionBDD() {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'root';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -105,8 +105,8 @@ function getPrixMin($pdo) {
     return $resultatint;
 }
 
-function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin) {
-    $requete = $pdo->prepare("UPDATE biens SET reference=:modifreference, ville=:modifville, type=:modiftype, prix=:modifprix, description=:modifdescription, surface=:modifsurface, nbpiece=:modifnbpiece, jardin=:modifjardin WHERE reference=:modifreference");
+function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin, $tri) {
+    $requete = $pdo->prepare("UPDATE biens SET reference=:modifreference, ville=:modifville, type=:modiftype, prix=:modifprix, description=:modifdescription, surface=:modifsurface, nbpiece=:modifnbpiece, jardin=:modifjardin WHERE reference=:modifreference ORDER BY ". $tri);
     $bv1 = $requete->bindValue(':modifreference', $reference, PDO::PARAM_INT);
     $bv2 = $requete->bindValue(':modifville', $ville, PDO::PARAM_STR);
     $bv3 = $requete->bindValue(':modiftype', $type, PDO::PARAM_STR);
@@ -164,4 +164,9 @@ function Supprimerbiens($pdo, $reference) {
     $bv1 = $pdostatement->bindValue(':ref', $reference);
     $exec = $pdostatement->execute();
     return $exec;
+}
+
+
+function getLeTri($tri) {
+    
 }
