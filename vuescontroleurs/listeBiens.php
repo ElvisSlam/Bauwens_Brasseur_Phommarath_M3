@@ -64,27 +64,18 @@ $lePdo = connexionBDD();
 
         <input type="submit" name="rechValid" value="Rechercher" size="20"/>
     </form>
-    
-    <form id="triBien" method="post" action="#">
+
+    <form id="formTri" method="post" action="">
         <h2>Trier les biens :</h2><br>
-        <p>Trier sur :</p>
-        <label for="triVille">Ville :</label>
-        <select name="triVille" id="triVille">
-            <option value="1" selected>Pas de tri</option>
-            <option value="ville ASC">Croissant</option>
-            <option value="ville DESC">Décroissant</option>
-        </select><br>
-        <label for="triType">Type :</label>
-        <select name="triType" id="triType">
-            <option value="1" selected>Pas de tri</option>
-            <option value="type ASC">Croissant</option>
-            <option value="type DESC">Décroissant</option>
-        </select><br>
-        <label for="triPrix">Prix :</label>
-        <select name="triPrix" id="triPrix">
-            <option value="1" selected>Pas de tri</option>
-            <option value="prix ASC">Croissant</option>
-            <option value="prix DESC">Décroissant</option>
+        <label for="formTri">Trier sur :</label>
+        <select name="formTri" id="selectTri">
+            <option value=" 1" selected>Pas de tri</option>
+            <option value=" ville ASC">Ville : Croissant</option>
+            <option value=" ville DESC">Ville : Décroissant</option>
+            <option value=" type ASC">Type : Croissant</option>
+            <option value=" type DESC">Type : Décroissant</option>
+            <option value=" prix ASC">Prix : Croissant</option>
+            <option value=" prix DESC">Prix : Décroissant</option>
         </select><br>
         <input type="submit" name="triValid" value="Trier">
     </form>
@@ -101,10 +92,10 @@ $lePdo = connexionBDD();
         <th>Jardin</th>
     </tr>
     <?php
-    if(isset($_POST['triVille'])){
-        $leTri = array($_POST['triVille'], $_POST['triType'], $_POST['triPrix']);
+    if(isset($_POST['formTri'])){
+        $tri = $_POST['formTri'];
     } else {
-        $leTri = " 1";
+        $tri = "1";
     }
     if (isset($_POST['rechVille'])) {
         $reference = htmlspecialchars($_POST['rechRef']);
@@ -130,9 +121,9 @@ $lePdo = connexionBDD();
         if ($_POST['rechRef'] == null) {
             $reference = getLaRef($lePdo);
         }
-        $lesBiens = getLesBiens($lePdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $leTri);
+        $lesBiens = getLesBiens($lePdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $tri);
     } else {
-        $lesBiens = getLesBiens($lePdo, '%', '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo), getSurfacemin($lePdo), getNbPiecemin($lePdo), $leTri);
+        $lesBiens = getLesBiens($lePdo, '%', '%', '%', '%', getPrixMin($lePdo), getPrixMax($lePdo), getSurfacemin($lePdo), getNbPiecemin($lePdo), $tri);
     }
     foreach ($lesBiens as $unBien) {
         $info = '<tr> <td>' . '<a href=' . 'descriptionbien.php?reference=' . $unBien['reference'] . '>' . $unBien['reference'] . '</a></td>'

@@ -45,25 +45,11 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     return $exec;
 }
 
-function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $lesTris) {
-    $tri ="";
-    if (is_array($lesTris)){
-        var_dump($lesTris);
-    foreach($lesTris as $unTri){
-        if($unTri!=1){
-            $tri=$tri.$unTri.",";
-        }
-    }
-    $tri = substr($tri,0,strlen($tri)-1);
-    //var_dump($tri);
-    }
-    else
-        $tri="1";
-    
+function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $tri) {
     $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE reference LIKE :rechRef "
             . "AND ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin "
             . "AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece "
-            . "ORDER BY ". $tri);
+            . "ORDER BY ".$tri);
     $bv1 = $pdostatement->bindValue(':rechVille', $ville, PDO::PARAM_STR);
     $bv2 = $pdostatement->bindValue(':rechType', $type, PDO::PARAM_STR);
     $bv3 = $pdostatement->bindValue(':rechJardin', $jardin, PDO::PARAM_STR);
@@ -74,6 +60,7 @@ function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixma
     $bv8 = $pdostatement->bindValue(':rechRef', $reference, PDO::PARAM_STR);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
+    var_dump($pdostatement);
     return $resultat;
 }
 
