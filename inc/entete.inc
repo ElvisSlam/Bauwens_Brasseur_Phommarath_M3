@@ -25,14 +25,7 @@
                 ?>
                 <a href="formConnexion.php" aria-current="page"  class="link-header">Se connecter</a>
             <?php } ?>
-            if (empty($_SESSION['username'])) {
-                ?>
-                 <a href="formInscription.php" aria-current="page"  class="link-header">S'inscrire</a>
-                <?php
-            } else {
-                ?>
-            <?php } ?>
-           
+              <a href="formInscription.php" aria-current="page"  class="link-header">S'inscrire</a>
 
             <a href="listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>
         </header>
