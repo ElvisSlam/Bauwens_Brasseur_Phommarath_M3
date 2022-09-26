@@ -2,5 +2,4 @@
 
 include_once '../modeles/mesFonctionsAccesBDD.php';
 $lePdo = connexionBDD();
-var_dump(getnbpiece($lePdo, 10));
-
+var_dump(getLesRefs($lePdo));

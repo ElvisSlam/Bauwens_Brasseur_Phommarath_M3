@@ -45,8 +45,11 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     return $exec;
 }
 
-function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece) {
-    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece");
+function getLesBiens($pdo, $reference, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece, $tri) {
+    $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE reference LIKE :rechRef "
+            . "AND ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin "
+            . "AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece "
+            . "ORDER BY ".$tri);
     $bv1 = $pdostatement->bindValue(':rechVille', $ville, PDO::PARAM_STR);
     $bv2 = $pdostatement->bindValue(':rechType', $type, PDO::PARAM_STR);
     $bv3 = $pdostatement->bindValue(':rechJardin', $jardin, PDO::PARAM_STR);
@@ -54,8 +57,10 @@ function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface,
     $bv5 = $pdostatement->bindValue(':rechPrixmax', $prixmax, PDO::PARAM_INT);
     $bv6 = $pdostatement->bindValue(':rechSurface', $surface, PDO::PARAM_INT);
     $bv7 = $pdostatement->bindValue(':rechPiece', $nbpiece, PDO::PARAM_INT);
+    $bv8 = $pdostatement->bindValue(':rechRef', $reference, PDO::PARAM_STR);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
+    var_dump($pdostatement);
     return $resultat;
 }
 
@@ -156,5 +161,33 @@ function getUser($pdo, $username) {
     $bv1 = $pdostatement->bindValue(':email', $username, PDO::PARAM_INT);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
+    return $resultat;
+}
+
+function Supprimerbiens($pdo, $reference) {
+    $requete1 = $pdo->prepare("Delete from biens WHERE reference = :ref");
+    $bv1 = $requete1->bindValue(':ref', $reference);
+    $exec = $requete1->execute();
+    return $exec;
+}
+
+function SuppImage($pdo, $reference) {
+    $requete1 = $pdo->prepare("Delete from image WHERE reference = :ref");
+    $bv1 = $requete1->bindValue(':ref', $reference);
+    $exec = $requete1->execute();
+    return $exec;
+}
+
+function getLesRefs($pdo) {
+    $pdostatement = $pdo->prepare("SELECT DISTINCT reference FROM biens");
+    $exec = $pdostatement->execute();
+    $resultat = $pdostatement->fetchAll();
+    return $resultat;
+}
+
+function getLaRef($pdo) {
+    $pdostatement = $pdo->prepare("SELECT reference FROM biens");
+    $exec = $pdostatement->execute();
+    $resultat = $pdostatement->fetch();
     return $resultat;
 }
