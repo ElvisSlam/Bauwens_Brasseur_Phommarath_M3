@@ -60,8 +60,10 @@ function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface,
     $bv5 = $pdostatement->bindValue(':rechPrixmax', $prixmax, PDO::PARAM_INT);
     $bv6 = $pdostatement->bindValue(':rechSurface', $surface, PDO::PARAM_INT);
     $bv7 = $pdostatement->bindValue(':rechPiece', $nbpiece, PDO::PARAM_INT);
+    $bv8 = $pdostatement->bindValue(':rechRef', $reference, PDO::PARAM_STR);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
+    var_dump($pdostatement);
     return $resultat;
 }
 
