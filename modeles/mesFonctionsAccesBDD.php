@@ -1,24 +1,28 @@
 <?php
 
-function connexionBDD() {
+function connexionBDD()
+{
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'newpass';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+        ));
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
     return $ObjConnexion;
 }
 
-function deconnexionBDD($cnx) {
+function deconnexionBDD($cnx)
+{
     $cnx = null;
 }
 
-function testlogin($pdo, $username) {
+function testlogin($pdo, $username)
+{
     $pdoStatement = $pdo->prepare("SELECT Count(*) FROM utilisateurs WHERE email = :username");
     $bv1 = $pdoStatement->bindValue(':username', $username);
     $execution = $pdoStatement->execute();
@@ -31,7 +35,8 @@ function testlogin($pdo, $username) {
     return $logok;
 }
 
-function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin) {
+function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin)
+{
     $requete = $pdo->prepare("INSERT INTO biens VALUES (:reference,:ville,:type,:prix,:description,:surface,:nbpiece,:jardin)");
     $bv1 = $requete->bindValue(':reference', $reference, PDO::PARAM_STR);
     $bv2 = $requete->bindValue(':ville', $ville, PDO::PARAM_STR);
@@ -45,7 +50,8 @@ function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     return $exec;
 }
 
-function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece) {
+function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface, $nbpiece)
+{
     $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE ville LIKE :rechVille AND type LIKE :rechType AND jardin LIKE :rechJardin AND prix BETWEEN :rechPrixmin AND :rechPrixmax AND surface >= :rechSurface AND nbpiece >= :rechPiece");
     $bv1 = $pdostatement->bindValue(':rechVille', $ville, PDO::PARAM_STR);
     $bv2 = $pdostatement->bindValue(':rechType', $type, PDO::PARAM_STR);
@@ -59,21 +65,24 @@ function getLesBiens($pdo, $ville, $type, $jardin, $prixmin, $prixmax, $surface,
     return $resultat;
 }
 
-function getLesVilles($pdo) {
+function getLesVilles($pdo)
+{
     $pdostatement = $pdo->prepare("SELECT DISTINCT ville FROM biens");
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
     return $resultat;
 }
 
-function getLesTypes($pdo) {
+function getLesTypes($pdo)
+{
     $pdostatement = $pdo->prepare("SELECT type FROM type");
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
     return $resultat;
 }
 
-function getPrixMax($pdo) {
+function getPrixMax($pdo)
+{
     $pdostatement = $pdo->prepare("SELECT MAX(prix) FROM biens");
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetch();
@@ -81,7 +90,8 @@ function getPrixMax($pdo) {
     return $resultatint;
 }
 
-function getUnBiens($pdo, $reference) {
+function getUnBiens($pdo, $reference)
+{
     $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE reference = :reference");
     $bv1 = $pdostatement->bindValue(':reference', $reference, PDO::PARAM_STR);
     $exec = $pdostatement->execute();
@@ -89,7 +99,8 @@ function getUnBiens($pdo, $reference) {
     return $resultat;
 }
 
-function getimage($pdo, $reference) {
+function getimage($pdo, $reference)
+{
     $pdostatement = $pdo->prepare("SELECT * FROM image WHERE reference = :reference");
     $bv1 = $pdostatement->bindValue(':reference', $reference, PDO::PARAM_STR);
     $exec = $pdostatement->execute();
@@ -97,7 +108,8 @@ function getimage($pdo, $reference) {
     return $resultat;
 }
 
-function getPrixMin($pdo) {
+function getPrixMin($pdo)
+{
     $pdostatement = $pdo->prepare("SELECT MIN(prix) FROM biens");
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetch();
@@ -105,7 +117,8 @@ function getPrixMin($pdo) {
     return $resultatint;
 }
 
-function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin) {
+function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin)
+{
     $requete = $pdo->prepare("UPDATE biens SET reference=:modifreference, ville=:modifville, type=:modiftype, prix=:modifprix, description=:modifdescription, surface=:modifsurface, nbpiece=:modifnbpiece, jardin=:modifjardin WHERE reference=:modifreference");
     $bv1 = $requete->bindValue(':modifreference', $reference, PDO::PARAM_INT);
     $bv2 = $requete->bindValue(':modifville', $ville, PDO::PARAM_STR);
@@ -119,7 +132,8 @@ function ModifBien($pdo, $reference, $ville, $type, $prix, $description, $surfac
     return $exec;
 }
 
-function getSurface($pdo, $surface) {
+function getSurface($pdo, $surface)
+{
     $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE surface >= :surface");
     $bv1 = $pdostatement->bindValue(':surface', $surface, PDO::PARAM_INT);
     $exec = $pdostatement->execute();
@@ -127,7 +141,8 @@ function getSurface($pdo, $surface) {
     return $resultat;
 }
 
-function getSurfacemin($pdo) {
+function getSurfacemin($pdo)
+{
     $pdostatement = $pdo->prepare("SELECT MIN(surface) FROM biens");
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetch();
@@ -135,7 +150,8 @@ function getSurfacemin($pdo) {
     return $resultatint;
 }
 
-function getNbpiece($pdo, $nbpiece) {
+function getNbpiece($pdo, $nbpiece)
+{
     $pdostatement = $pdo->prepare("SELECT * FROM biens WHERE nbpiece >= :nbpiece");
     $bv1 = $pdostatement->bindValue(':nbpiece', $nbpiece, PDO::PARAM_INT);
     $exec = $pdostatement->execute();
@@ -143,7 +159,8 @@ function getNbpiece($pdo, $nbpiece) {
     return $resultat;
 }
 
-function getNbPiecemin($pdo) {
+function getNbPiecemin($pdo)
+{
     $pdostatement = $pdo->prepare("SELECT MIN(nbpiece) FROM biens");
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetch();
@@ -151,10 +168,32 @@ function getNbPiecemin($pdo) {
     return $resultatint;
 }
 
-function getUser($pdo, $username) {
+function getUser($pdo, $username)
+{
     $pdostatement = $pdo->prepare("SELECT * FROM utilisateurs WHERE email = :email");
     $bv1 = $pdostatement->bindValue(':email', $username, PDO::PARAM_INT);
     $exec = $pdostatement->execute();
     $resultat = $pdostatement->fetchAll();
     return $resultat;
+}
+
+function inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
+{
+    if ($Nom && $Prenom && $email && $password && $repeatpassword) 
+        if (strlen($password) >= 6) 
+            if ($password == $repeatpassword) {
+                $password = password_hash($password, PASSWORD_BCRYPT);
+                $requete = $lePdo->prepare("INSERT INTO utilisateurs VALUES (:Nom,:Prenom,:email,:password)");
+                $bv1 = $requete->bindValue(':Nom', $Nom, PDO::PARAM_STR);
+                $bv2 = $requete->bindValue(':Prenom', $Prenom, PDO::PARAM_STR);
+                $bv3 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
+                $bv4 = $requete->bindValue(':password', $password, PDO::PARAM_STR);
+                $exec = $requete->execute();
+
+                $log = true;
+            } else {
+                $log = false;
+            }
+    
+    return $log;
 }
