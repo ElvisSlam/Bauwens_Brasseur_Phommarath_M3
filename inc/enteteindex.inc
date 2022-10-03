@@ -10,6 +10,7 @@
             <a href="index.php">
                 <img src="images/logo_dark_transpa.png" class="img-header" alt="logo">
             </a>
+            <a href="vuescontroleurs/formInscription.php" aria-current="page"  class="link-header">S'inscrire</a>
             <a href="vuescontroleurs/formConnexion.php" aria-current="page"  class="link-header">Se connecter</a>
             <a href="vuescontroleurs/listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>
         </header>

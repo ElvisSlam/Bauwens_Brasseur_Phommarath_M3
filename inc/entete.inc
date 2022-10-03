@@ -15,16 +15,10 @@
             session_start();
             $_SESSION['username'];
             ?>
-
-            <?php
-            if (isset($_SESSION['username'])) {
-                ?>
                 <a href="menu.php" aria-current="page"  class="link-header">Menu</a>
-                <?php
-            } else {
-                ?>
+ 
                 <a href="formConnexion.php" aria-current="page"  class="link-header">Se connecter</a>
-            <?php } ?>
+
               <a href="formInscription.php" aria-current="page"  class="link-header">S'inscrire</a>
 
             <a href="listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>

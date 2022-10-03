@@ -7,5 +7,7 @@ include_once '../modeles/mesFonctionsAccesBDD.php';
 $lePdo = connexionBDD();
 
 
+var_dump(isset($case));
+die;
 //var_dump permet d'afficher le contenu d'un objet. Utilisable uniquement lors de test de validation
 var_dump(inscription($lePdo, 'test','test','test@gmail.com','test','test'));

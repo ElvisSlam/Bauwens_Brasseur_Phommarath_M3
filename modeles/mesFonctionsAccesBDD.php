@@ -216,21 +216,21 @@ function getLaRef($pdo)
 
 function inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
 {
-    if ($Nom && $Prenom && $email && $password && $repeatpassword)
-        if (strlen($password) >= 6)
-            if ($password == $repeatpassword) {
-                $password = password_hash($password, PASSWORD_BCRYPT);
-                $requete = $lePdo->prepare("INSERT INTO utilisateurs VALUES (:Nom,:Prenom,:email,:password)");
-                $bv1 = $requete->bindValue(':Nom', $Nom, PDO::PARAM_STR);
-                $bv2 = $requete->bindValue(':Prenom', $Prenom, PDO::PARAM_STR);
-                $bv3 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
-                $bv4 = $requete->bindValue(':password', $password, PDO::PARAM_STR);
-                $exec = $requete->execute();
+    if ($Nom && $Prenom && $email && $password && $repeatpassword) {
+        if ($password == $repeatpassword) {
+            $password = password_hash($password, PASSWORD_BCRYPT);
+            $requete = $lePdo->prepare("INSERT INTO utilisateurs VALUES (:Nom,:Prenom,:email,:password)");
+            $bv1 = $requete->bindValue(':Nom', $Nom, PDO::PARAM_STR);
+            $bv2 = $requete->bindValue(':Prenom', $Prenom, PDO::PARAM_STR);
+            $bv3 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
+            $bv4 = $requete->bindValue(':password', $password, PDO::PARAM_STR);
+            $exec = $requete->execute();
 
-                $log = true;
-            } else {
-                $log = false;
-            }
+            $log = true;
+        } else {
+            $log = false;
+        }
+    }
 
     return $log;
 }
