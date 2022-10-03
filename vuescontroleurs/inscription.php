@@ -9,8 +9,8 @@ $password = $_POST['password'];
 $repeatpassword = $_POST['repeatpassword'];
 $lePdo = connexionBDD();
   
-$inscription = inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword);
-if ($inscription == true) {
+//$inscription = inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword);
+if (inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
     session_start();
     $_SESSION['username'] = $Nom;
     $id_session = session_id();

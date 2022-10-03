@@ -12,7 +12,7 @@ require('../modeles/mesFonctionsAccesBDD.php');
     <input type="submit" value="S'inscrire " name="submit" class="box-button">
 </form>
 <?php
-include_once '../inc/piedDePage.inc';
+
 ?>
 </body>
 </html>
