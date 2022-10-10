@@ -2,10 +2,9 @@
 
 include_once '../modeles/mesFonctionsAccesBDD.php';
 
-
-//$inscription = inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword);
-
 if (isset($_POST['donnees'])) {
+    $ErrorArrays = array();
+
     $Nom = $_POST['nom'];
     $Prenom = $_POST['prenom'];
     $email = $_POST['email'];
