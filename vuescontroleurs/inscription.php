@@ -23,7 +23,7 @@ if (isset($_POST['donnees'])) {
         header('Location: formInscription.php?erreur=1');
     }
 } else {
-    header('Location: formInscription.php?erreur=1');
+    header('Location: formInscription.php?erreur=2');
 }
 
 mysqli_close($db);
