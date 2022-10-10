@@ -22,7 +22,7 @@ require('../modeles/mesFonctionsAccesBDD.php');
     <input type="password" class="box-input" name="password" placeholder="Mot de passe">
     <input type="password" class="box-input" name="repeatpassword" placeholder="Confirmer mot de passe">
     Vous avez lu et accepter le réglement sur la protection de vos données</a>
-    <input type="checkbox" onClick='PopupImage("../images/rgpd.png")' id="donnees" name="donnees" values="on">
+    <input type="checkbox" onClick='PopupImage("../images/politique.png")' id="donnees" name="donnees" values="on">
     <br><br>
     <input type="submit" value="S'inscrire" name="submit" class="box-button">
 
