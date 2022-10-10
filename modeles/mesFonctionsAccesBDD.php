@@ -225,7 +225,6 @@ function inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
             $bv3 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
             $bv4 = $requete->bindValue(':password', $password, PDO::PARAM_STR);
             $exec = $requete->execute();
-
             $log = true;
         } else {
             $log = false;
