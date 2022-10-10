@@ -20,6 +20,8 @@
                 <a href="formConnexion.php" aria-current="page"  class="link-header">Se connecter</a>
 
               <a href="formInscription.php" aria-current="page"  class="link-header">S'inscrire</a>
+              
 
             <a href="listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>
+            <a href="rgpd.php" aria-current="page"  class="link-header">Politique de protection des données</a>
         </header>

@@ -13,5 +13,6 @@
             <a href="vuescontroleurs/formInscription.php" aria-current="page"  class="link-header">S'inscrire</a>
             <a href="vuescontroleurs/formConnexion.php" aria-current="page"  class="link-header">Se connecter</a>
             <a href="vuescontroleurs/listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>
+            <a href="vuescontroleurs/rgpd.php" aria-current="page"  class="link-header">Politique de protection des données</a>
         </header>
         
