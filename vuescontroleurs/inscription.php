@@ -12,7 +12,6 @@ if (isset($_POST['donnees'])) {
     $repeatpassword = $_POST['repeatpassword'];
     $check = $_POST['donnees'];
     $lePdo = connexionBDD();
-
     if (inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
         session_start();
         $_SESSION['username'] = $Nom;
