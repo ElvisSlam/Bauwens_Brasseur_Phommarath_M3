@@ -216,11 +216,10 @@ function getLaRef($pdo)
 
 function Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
 {
-    wds<fèhg-y
     if ($Nom && $Prenom && $email && $password && $repeatpassword) {
-        echo 'premier if';
+
         if ($password == $repeatpassword) {
-            echo 'deuxieme';
+
             $password = password_hash($password, PASSWORD_BCRYPT);
             $requete = $lePdo->prepare("INSERT INTO utilisateurs VALUES (:Nom,:Prenom,:email,:password,CURDATE())");
             $bv1 = $requete->bindValue(':Nom', $Nom, PDO::PARAM_STR);
@@ -231,7 +230,8 @@ function Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
             $log = true;
         } else {
             $log = false;
-        }echo $log;
+        }
+        echo $log;
     }
     return $log;
 }
