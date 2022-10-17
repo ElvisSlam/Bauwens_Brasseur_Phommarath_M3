@@ -2,26 +2,31 @@
 
 include_once '../modeles/mesFonctionsAccesBDD.php';
 
-if (isset($_POST['donnees'])) {
-    $ErrorArrays = array();
+$Nom = $_POST['nom'];
+$Prenom = $_POST['prenom'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$repeatpassword = $_POST['repeatpassword'];
+$lePdo = connexionBDD();
 
-    $Nom = $_POST['nom'];
-    $Prenom = $_POST['prenom'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $repeatpassword = $_POST['repeatpassword'];
-    $check = $_POST['donnees'];
-    $lePdo = connexionBDD();
-    if (inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
+var_dump($_POST);
+if (isset($_POST['donnees'])) {
+
+echo 'zer';
+    if (Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
+        echo 'ert';
+        var_dump($strongPass);
         session_start();
         $_SESSION['username'] = $Nom;
         $id_session = session_id();
-        header('Location: listeBiens.php?' . $_SESSION['username']);
+        //header('Location: listeBiens.php?' . $_SESSION['username']);
     } else {
-        header('Location: formInscription.php?erreur=1');
+
+       // header('Location: formInscription.php?erreur=1');
     }
 } else {
-    header('Location: formInscription.php?erreur=2');
+
+    //header('Location: formInscription.php?erreur=4');
 }
 
 mysqli_close($db);
