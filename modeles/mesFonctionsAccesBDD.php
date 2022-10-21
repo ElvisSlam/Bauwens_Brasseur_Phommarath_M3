@@ -219,7 +219,7 @@ function inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
     if ($Nom && $Prenom && $email && $password && $repeatpassword) {
         if ($password == $repeatpassword) {
             $password = password_hash($password, PASSWORD_BCRYPT);
-            $requete = $lePdo->prepare("INSERT INTO utilisateurs VALUES (:Nom,:Prenom,:email,:password)");
+            $requete = $lePdo->prepare("INSERT INTO utilisateurs VALUES (:Nom,:Prenom,:email,:password, CURDATE())");
             $bv1 = $requete->bindValue(':Nom', $Nom, PDO::PARAM_STR);
             $bv2 = $requete->bindValue(':Prenom', $Prenom, PDO::PARAM_STR);
             $bv3 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
