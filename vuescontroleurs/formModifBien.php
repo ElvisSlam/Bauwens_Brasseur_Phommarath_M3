@@ -1,5 +1,5 @@
 <?php
-include_once'../inc/entete.inc';
+include_once '../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
 session_start();
 ?>
