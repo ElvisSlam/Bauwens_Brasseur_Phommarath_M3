@@ -10,16 +10,12 @@
             <a href="../index.php">
                 <img src="../images/logo_dark_transpa.png" class="img-header" alt="logo">
             </a>
-
             <?php
             session_start();
-            ?>
-            <?php
             if (isset($_SESSION['username'])) {
             ?>
-            <a href="menu.php" aria-current="page"  class="link-header">Menu</a>
+            <a href="menu.php?.$_SESSION['username']" aria-current="page"  class="link-header">Menu</a>
             <a href="Deconnexion.php" aria-current="page"  class="link-header">Deconnexion</a>
-            <a href="formRectif.php" aria-current="page" class="link-header">Rectifier vos données</a>
             <?php
             } else {
             ?>
@@ -29,8 +25,7 @@
             }
             ?>
             
-            <a href="politique.php" aria-current="page"  class="link-header">politique de confidentialité</a>
+            <a href="politique.php?.$_SESSION['username']" aria-current="page"  class="link-header">politique de confidentialité</a>
 
             <a href="listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>
-            
         </header>

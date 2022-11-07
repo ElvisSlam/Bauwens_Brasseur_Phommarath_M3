@@ -9,19 +9,38 @@ $password = $_POST['password'];
 $repeatpassword = $_POST['repeatpassword'];
 $lePdo = connexionBDD();
 
-var_dump($_POST);
-if (isset($_POST['donnees'])) {
 
-    if (Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
-        session_start();
-        $_SESSION['username'] = $Nom;
-        $id_session = session_id();
-        header('Location: listeBiens.php?' . $_SESSION['username']);
+if (isset($_POST['password'])) {
+    $password = $_POST['password'];
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
+    if ($uppercase || $lowercase || $number || $specialChars || strlen($password) < 8) {
+        echo '<script>alert("Le mot de passe devrait faire au moins 8 caractères et devrait inclure au moins une lettre majuscule, un nombre, et un caractère spécial.")</script>';
+        $strongPass = false;
+    } else {
+        $strongPass = true;
+    }
+}
+if ($strongPass) {
+
+    if (isset($_POST['donnees'])) {
+
+        if (Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
+            session_start();
+            $_SESSION['username'] = $Nom;
+            $id_session = session_id();
+            header('Location: listeBiens.php?' . $_SESSION['username']);
+        } else {
+
+            header('Location: formInscription.php?erreur=1');
+        }
     } else {
 
-        header('Location: formInscription.php?erreur=1');
+        header('Location: formInscription.php?erreur=4');
     }
-} else {
-
+}else {
     header('Location: formInscription.php?erreur=4');
 }
