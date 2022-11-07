@@ -1,4 +1,5 @@
 <?php
+unset($_SESSION['username']);
 session_destroy();
-header('Location: formInscription.php');
+header('Location: formConnexion.php');
 ?>

@@ -235,3 +235,31 @@ function Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
     }
     return $log;
 }
+
+function insertConnexion()
+{
+}
+
+function insertDeconnexion()
+{
+}
+
+function recupInfo($pdo , $email){
+    $requete = $pdo->prepare("SELECT nom,prenom,mdp FROM utilisateurs where email =:email");
+    $bv1 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
+    $exec = $requete->execute();
+    $resultat = $requete->fetch();
+    return $resultat;
+}
+
+function modifInfo($pdo, $modifnom ,$email, $modifprenom ,$modifpassword) {
+    $password = password_hash($modifpassword, PASSWORD_BCRYPT);
+    $requete = $pdo->prepare("UPDATE utilisateurs SET nom=:modifnom, prenom=:modifprenom, mdp=:modifmdp WHERE email =:email");
+    $bv4 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
+    $bv1 = $requete->bindValue(':modifnom', $modifnom, PDO::PARAM_STR);
+    $bv2 = $requete->bindValue(':modifprenom', $modifprenom, PDO::PARAM_STR);
+    $bv3 = $requete->bindValue(':modifmdp', $password, PDO::PARAM_STR);
+    $exec = $requete->execute();
+    return $exec;
+}
+

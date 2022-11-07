@@ -1,6 +1,7 @@
 <?php
-include_once'../inc/entete.inc';
+include_once '../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
+session_destroy();
 ?>
 <form class="box" action="verif.php" method="post" name="login">
     <h1 class="box-title">Connexion</h1>

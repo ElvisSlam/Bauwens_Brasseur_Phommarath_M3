@@ -1,6 +1,7 @@
 <?php
 include_once '../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
+
 session_destroy();
 
 if (isset($_POST['password'])) {
