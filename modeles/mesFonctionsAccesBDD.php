@@ -236,29 +236,6 @@ function Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
     return $log;
 }
 
-<<<<<<< HEAD
-function rectif($lePdo, $nom, $prenom, $mdp, $email) {
-    $log = false;
-    if(empty($mdp)){
-        $requete=$lePdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom WHERE email=:email");
-        $bv1=$requete->bindValue(':nom',$nom, PDO::PARAM_STR);
-        $bv2=$requete->bindValue(':prenom',$prenom, PDO::PARAM_STR);
-        $bv3=$requete->bindValue(':email',$email, PDO::PARAM_STR);
-        $requete->execute();
-        $log=true;
-    } else {
-        $mdp =password_hash($mdp, PASSWORD_BCRYPT);
-        $requete=$lePdo->prepare("UPDATE utilisateurs SET nom = :nom, prenom = :prenom, mdp=:mdp WHERE email=:email");
-        $bv1=$requete->bindValue(':nom',$nom, PDO::PARAM_STR);
-        $bv2=$requete->bindValue(':prenom',$prenom, PDO::PARAM_STR);
-        $bv3=$requete->bindValue(':email',$email, PDO::PARAM_STR);
-        $bv4=$requete->bindValue(':mdp',$mdp, PDO::PARAM_STR);
-        $requete->execute();
-        $log=true;
-    }
-    return $log;
-}
-=======
 function insertConnexion()
 {
 }
@@ -286,4 +263,3 @@ function modifInfo($pdo, $modifnom ,$email, $modifprenom ,$modifpassword) {
     return $exec;
 }
 
->>>>>>> f3ef06771091a1df884b25e7e5c5b86f2a87fdfd
