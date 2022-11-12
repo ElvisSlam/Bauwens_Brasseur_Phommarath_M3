@@ -27,7 +27,7 @@
             }
             ?>
             
-            <a href="politique.php" aria-current="page"  class="link-header">politique de confidentialité</a>
+            <a href="rgpd.php" aria-current="page"  class="link-header">politique de confidentialité</a>
 
             <a href="listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>
 

@@ -4,7 +4,7 @@ function connexionBDD()
 {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'newpass';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(

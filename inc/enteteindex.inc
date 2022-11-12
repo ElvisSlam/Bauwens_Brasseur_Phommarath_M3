@@ -26,6 +26,6 @@
             <?php 
             }
             ?>
-            <a href="vuescontroleurs/politique.php" aria-current="page"  class="link-header">politique de confidentialité</a>
+            <a href="vuescontroleurs/rgpd.php" aria-current="page"  class="link-header">politique de confidentialité</a>
             <a href="vuescontroleurs/listeBiens.php" aria-current="page" class="link-header">Visualiser la liste des biens</a>
         </header>
