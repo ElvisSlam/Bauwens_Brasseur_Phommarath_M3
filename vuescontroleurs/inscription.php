@@ -18,29 +18,29 @@ if (isset($_POST['password'])) {
     $specialChars = preg_match('@[^\w]@', $password);
 
     if ($uppercase || $lowercase || $number || $specialChars || strlen($password) < 8) {
-        echo '<script>alert("Le mot de passe devrait faire au moins 8 caractères et devrait inclure au moins une lettre majuscule, un nombre, et un caractère spécial.")</script>';
+        echo '<div class="alert alert-danger" role="alert">
+        A simple danger alert—check it out!
+      </div>';
         $strongPass = false;
     } else {
         $strongPass = true;
     }
 }
-if ($strongPass) {
 
-    if (isset($_POST['donnees'])) {
 
-        if (Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
-            session_start();
-            $_SESSION['username'] = $Nom;
-            $id_session = session_id();
-            header('Location: listeBiens.php?' . $_SESSION['username']);
-        } else {
 
-            header('Location: formInscription.php?erreur=1');
-        }
+if (isset($_POST['donnees'])) {
+
+    if (Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
+        session_start();
+        $_SESSION['username'] = $Nom;
+        $id_session = session_id();
+        header('Location: listeBiens.php?' . $_SESSION['username']);
     } else {
 
-        header('Location: formInscription.php?erreur=4');
+        header('Location: formInscription.php?erreur=1');
     }
-}else {
-    header('Location: formInscription.php?erreur=4');
+} else {
+
+    header('Location: formInscription.php?erreur=3');
 }
