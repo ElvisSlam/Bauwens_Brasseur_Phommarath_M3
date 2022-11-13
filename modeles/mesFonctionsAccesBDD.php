@@ -255,3 +255,31 @@ function rectif($lePdo, $nom, $prenom, $mdp, $email) {
     }
     return $log;
 }
+
+function deco($lePdo, $login){
+    $log = false;
+    $requete=$lePdo->prepare("UPDATE connexion SET dateDeconnexion = NOW() WHERE login = :login ORDER BY id DESC LIMIT 1");
+    $bv1=$requete->bindValue(':login',$login,PDO::PARAM_STR);
+    if($requete->execute()){
+        $log = true;
+    }
+    return $log;
+}
+
+
+function dataCheck($lePdo){
+    $requete = $lePdo->prepare("SELECT login, dateDeconnexion FROM `connexion` WHERE dateDeconnexion < NOW()-interval 1 year");
+    $requete->execute();
+    $resultat = $requete->fetchAll();
+    $info = $resultat['login'];
+    var_dump($info);
+    foreach ($resultat as $res) {
+        var_dump($res['login']);
+    }
+}
+
+function checkDeco($lePdo, $login){
+    $requete= $lePdo->prepare("SELECT * FROM `connexion` WHERE login = :login ORDER BY id DESC LIMIT 1;");
+    $bv1=$requete->bindValue(':login',$login,PDO::PARAM_STR);
+    
+}
