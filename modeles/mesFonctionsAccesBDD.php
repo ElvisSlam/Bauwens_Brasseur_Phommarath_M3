@@ -236,15 +236,47 @@ function Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
     return $log;
 }
 
-function insertConnexion()
+function recupConnexion($pdo, $username)
 {
+    $requete = $pdo->prepare("SELECT email FROM connexion where email =:username");
+    $bv1 = $requete->bindValue(':username', $username, PDO::PARAM_STR);
+    $exec = $requete->execute();
+    $resultat = $requete->fetch();
+    return $resultat;
 }
 
-function insertDeconnexion()
+function insertConnexion($lePdo, $username)
 {
+    if (recupConnexion($lePdo, $username) == false) {
+        $req = $lePdo->prepare("UPDATE Connexion Set dateConnexion = 'NOW()' WHERE email=:username");
+        $req->execute();
+        $resultat = $req->fetch();
+        return $resultat;
+    } else {
+        $req = $lePdo->prepare("INSERT INTO Connexion (email, dateConnexion) VALUES('" . $username . "', NOW())");
+        $req->execute();
+        $resultat = $req->fetch();
+        return $resultat;
+    }
 }
 
-function recupInfo($pdo , $email){
+function insertDeconnexion($lePdo, $username)
+{
+    if (recupConnexion($lePdo, $username) == false) {
+        $req = $lePdo->prepare("UPDATE Connexion Set dateDeconnexion = 'NOW()' WHERE email=:username");
+        $req->execute();
+        $resultat = $req->fetch();
+        return $resultat;
+    } else {
+        $req = $lePdo->prepare("INSERT INTO Connexion (email, dateDeconnexion) VALUES('" . $username . "', NOW())");
+        $req->execute();
+        $resultat = $req->fetch();
+        return $resultat;
+    }
+}
+
+function recupInfo($pdo, $email)
+{
     $requete = $pdo->prepare("SELECT nom,prenom,mdp FROM utilisateurs where email =:email");
     $bv1 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
     $exec = $requete->execute();
@@ -252,7 +284,8 @@ function recupInfo($pdo , $email){
     return $resultat;
 }
 
-function modifInfo($pdo, $modifnom ,$email, $modifprenom ,$modifpassword) {
+function modifInfo($pdo, $modifnom, $email, $modifprenom, $modifpassword)
+{
     $password = password_hash($modifpassword, PASSWORD_BCRYPT);
     $requete = $pdo->prepare("UPDATE utilisateurs SET nom=:modifnom, prenom=:modifprenom, mdp=:modifmdp WHERE email =:email");
     $bv4 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
@@ -262,4 +295,3 @@ function modifInfo($pdo, $modifnom ,$email, $modifprenom ,$modifpassword) {
     $exec = $requete->execute();
     return $exec;
 }
-

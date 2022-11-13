@@ -12,9 +12,7 @@ $res = $requete->fetchAll();
 
 foreach ($res as $result) {
     if ($result['email'] == $username && password_verify($password, $result['mdp'])) {
-        $req = $lePdo->prepare("INSERT INTO Connexion (email, dateConnexion) VALUES('".$username."', NOW())");
-        var_dump($req);
-        $req->execute();
+        insertConnexion($lePdo, $username);
         session_start();
         $_SESSION['username'] = $username;
         $id_session = session_id();
@@ -23,4 +21,3 @@ foreach ($res as $result) {
         echo '<h1>erreur de connexion </h1>';
     }
 }
-?>

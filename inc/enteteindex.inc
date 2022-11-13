@@ -34,7 +34,7 @@
           </a>
           <ul class="dropdown-menu">
           <?php
-            session_start();
+            
             if (isset($_SESSION['username'])) {
             ?>
             <li><a class="dropdown-item" href="vuescontroleurs/Deconnexion.php">Deconnexion</a></li>
