@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
-
 <nav class="navbar navbar-expand-lg bg-dark">
  <a class="navbar-brand" href="#">
       <img src="../images/logo_dark_transpa.png" class="img-header" alt="logo">
@@ -36,16 +35,19 @@
           </a>
           <ul class="dropdown-menu">
           <?php
+          session_start();
             if (isset($_SESSION['username'])) {
             ?>
-            <li><a class="dropdown-item" href="Deconnexion.php">Deconnexion</a></li>
-            <li><a class="dropdown-item" href="rectification.php">rectification</a></li>
-            <li><a class="dropdown-item" href="info.php">Informations personnelles</a></li>
+            <li><a class="dropdown-item" href="info.php" style="color:black">Informations personnelles</a></li>
+            
+            <li><a class="dropdown-item" href="rectification.php" style="color:black">rectification</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="Deconnexion.php" style="color:black">Deconnexion</a></li>
             <?php
             } else {
             ?>
-            <li><a class="dropdown-item" href="formConnexion.php">Se connecter</a></li>
-            <li><a class="dropdown-item" href="formInscription.php">S'inscrire</a></li>
+            <li><a class="dropdown-item" href="formConnexion.php" style="color:black">Se connecter</a></li>
+            <li><a class="dropdown-item" href="formInscription.php" style="color:black">S'inscrire</a></li>
             <?php 
             }
             ?>

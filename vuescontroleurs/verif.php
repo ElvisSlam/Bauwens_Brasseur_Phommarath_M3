@@ -15,7 +15,6 @@ foreach ($res as $result) {
         insertConnexion($lePdo, $username);
         session_start();
         $_SESSION['username'] = $username;
-        $id_session = session_id();
         header('Location: ../index.php');
     } else {
         echo '<h1>erreur de connexion </h1>';

@@ -248,12 +248,13 @@ function recupConnexion($pdo, $username)
 function insertConnexion($lePdo, $username)
 {
     if (recupConnexion($lePdo, $username) == false) {
-        $req = $lePdo->prepare("UPDATE Connexion Set dateConnexion = 'NOW()' WHERE email=:username");
+        $req = $lePdo->prepare("UPDATE connexion Set dateConnexion = 'NOW()' WHERE email=:username");
+        $bv1 = $req->bindValue(':username', $username, PDO::PARAM_STR);
         $req->execute();
         $resultat = $req->fetch();
         return $resultat;
     } else {
-        $req = $lePdo->prepare("INSERT INTO Connexion (email, dateConnexion) VALUES('" . $username . "', NOW())");
+        $req = $lePdo->prepare("INSERT INTO connexion (email, dateConnexion) VALUES('" . $username . "', NOW())");
         $req->execute();
         $resultat = $req->fetch();
         return $resultat;
@@ -263,12 +264,13 @@ function insertConnexion($lePdo, $username)
 function insertDeconnexion($lePdo, $username)
 {
     if (recupConnexion($lePdo, $username) == false) {
-        $req = $lePdo->prepare("UPDATE Connexion Set dateDeconnexion = 'NOW()' WHERE email=:username");
+        $req = $lePdo->prepare("UPDATE connexion Set dateDeconnexion = 'NOW()' WHERE email=:username");
+        $bv1 = $req->bindValue(':username', $username, PDO::PARAM_STR);
         $req->execute();
         $resultat = $req->fetch();
         return $resultat;
     } else {
-        $req = $lePdo->prepare("INSERT INTO Connexion (email, dateDeconnexion) VALUES('" . $username . "', NOW())");
+        $req = $lePdo->prepare("INSERT INTO connexion (email, dateDeconnexion) VALUES('" . $username . "', NOW())");
         $req->execute();
         $resultat = $req->fetch();
         return $resultat;
@@ -277,7 +279,7 @@ function insertDeconnexion($lePdo, $username)
 
 function recupInfo($pdo, $email)
 {
-    $requete = $pdo->prepare("SELECT nom,prenom,mdp FROM utilisateurs where email =:email");
+    $requete = $pdo->prepare("SELECT nom , prenom , mdp FROM utilisateurs where email =:email");
     $bv1 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
     $exec = $requete->execute();
     $resultat = $requete->fetch();

@@ -17,18 +17,17 @@ if (isset($_POST['password'])) {
     $number = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
 
-    if ($uppercase || $lowercase || $number || $specialChars || strlen($password) < 8) {
-        echo '<div class="alert alert-danger" role="alert">
-        A simple danger alert—check it out!
-      </div>';
+    if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+        
         $strongPass = false;
+        header('Location: formInscription.php?erreur=mdp');
     } else {
         $strongPass = true;
     }
 }
 
 
-
+if($strongPass) {
 if (isset($_POST['donnees'])) {
 
     if (Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
@@ -43,4 +42,5 @@ if (isset($_POST['donnees'])) {
 } else {
 
     header('Location: formInscription.php?erreur=3');
+}
 }
