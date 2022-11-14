@@ -38,7 +38,7 @@
           session_start();
             if (isset($_SESSION['username'])) {
             ?>
-            <li><a class="dropdown-item" href="info.php" style="color:black">Informations personnelles</a></li>
+            <li><a class="dropdown-item" href="telecharger.php?path=info.json" style="color:black">Informations personnelles</a></li>
             
             <li><a class="dropdown-item" href="rectification.php" style="color:black">rectification</a></li>
             <li><hr class="dropdown-divider"></li>
