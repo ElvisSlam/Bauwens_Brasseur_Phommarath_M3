@@ -282,7 +282,7 @@ function recupInfo($pdo, $email)
     $requete = $pdo->prepare("SELECT nom , prenom , email FROM utilisateurs where email =:email");
     $bv1 = $requete->bindValue(':email', $email, PDO::PARAM_STR);
     $exec = $requete->execute();
-    $resultat = $requete->fetch();
+    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
     return $resultat;
 }
 
