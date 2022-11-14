@@ -38,7 +38,7 @@
             if (isset($_SESSION['username'])) {
  
             ?>
-            <li><a class="dropdown-item" href="vuescontroleurs/info.php" style="color:black">Informations personnelles</a></li>
+            <li><a class="dropdown-item" href="vuescontroleurs/info.php?path=info.json" style="color:black">Informations personnelles</a></li>
             
             <li><a class="dropdown-item" href="vuescontroleurs/rectification.php" style="color:black">rectification</a></li>
             <li><hr class="dropdown-divider"></li>
