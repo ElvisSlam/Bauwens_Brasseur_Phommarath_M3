@@ -4,7 +4,7 @@ require('../modeles/mesFonctionsAccesBDD.php');
 $lePdo = connexionBDD();
 $username = $_SESSION["username"];
 $req = $lePdo->prepare("SELECT nom, prenom, mdp FROM utilisateurs WHERE email LIKE '$username'");
-var_dump($req);
+//var_dump($req);
 $req->execute();
 $res=$req->fetch();
 $nom = $res["nom"];

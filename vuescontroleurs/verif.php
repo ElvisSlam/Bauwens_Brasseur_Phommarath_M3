@@ -12,7 +12,7 @@ $res = $requete->fetchAll();
 
 foreach ($res as $result) {
     if ($result['email'] == $username && password_verify($password, $result['mdp'])) {
-        $req = $lePdo->prepare("INSERT INTO Connexion (login, dateConnexion) VALUES('".$username."', NOW())");
+        $req = $lePdo->prepare("INSERT INTO connexion (login, dateConnexion) VALUES('".$username."', NOW())");
         //var_dump($req);
         $req->execute();
         session_start();

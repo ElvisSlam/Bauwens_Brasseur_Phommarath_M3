@@ -4,7 +4,7 @@ function connexionBDD()
 {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'newpass';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -282,4 +282,28 @@ function checkDeco($lePdo, $login){
     $requete= $lePdo->prepare("SELECT * FROM `connexion` WHERE login = :login ORDER BY id DESC LIMIT 1;");
     $bv1=$requete->bindValue(':login',$login,PDO::PARAM_STR);
     
+}
+
+function getInfos($lePdo, $login){
+    $resultat = null;
+    $requete=$lePdo->prepare("SELECT nom,prenom,email FROM utilisateurs WHERE email = :login");
+    $bv1 = $requete->bindValue(':login',$login,PDO::PARAM_STR);
+    if($requete->execute()){
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+    }
+    return $resultat;
+}
+
+function deleteData($lePdo, $login) {
+    $log = false;
+    $requete = $lePdo->prepare("DELETE FROM connexion WHERE login = :login");
+    $bv1 = $requete->bindValue(':login',$login,PDO::PARAM_STR);
+    if($requete->execute()){
+        $requete2 = $lePdo->prepare("DELETE FROM utilisateurs WHERE email = :login");
+        $bv2 = $requete2->bindValue(':login',$login,PDO::PARAM_STR);
+        if($requete2->execute()){
+            $log = true;
+        }
+    }
+    return $log;
 }
