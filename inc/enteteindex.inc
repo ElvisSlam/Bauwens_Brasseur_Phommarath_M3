@@ -23,7 +23,7 @@
                     <a class="nav-link active" aria-current="page" href="vuescontroleurs/listeBiens.php">Visualiser la liste des biens</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="vuescontroleurs/rgpd.php">Politique des données</a>
+                    <a class="nav-link" href="vuescontroleurs/rgpd.php">Politique de données</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

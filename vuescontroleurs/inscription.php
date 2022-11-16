@@ -16,16 +16,19 @@ if (isset($_POST['donnees'])) {
     if(preg_match($exp,$password)){
         if(filter_var($email,FILTER_VALIDATE_EMAIL)){
             if (inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
-                session_start();
-                $_SESSION['username'] = $Nom;
-                $id_session = session_id();
-                header('Location: listeBiens.php?' . $_SESSION['username']);
+                if(connectInscri($lePdo, $email)) {
+                    session_start();
+                    $_SESSION['username'] = $email;
+                    $id_session = session_id();
+                    header('Location: listeBiens.php?');
+                } else {
+                    header("Location: formInscription.php?erreur=4");
+                }
             } else {
                 header("Location: formInscription.php?erreur=2");
             }
         } else {
             header("Location: formInscription.php?erreur=1");
-
         }
     } else {
         header("Location: formInscription.php?erreur=3");

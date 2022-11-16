@@ -1,16 +1,28 @@
 <?php
 include_once '../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
-switch(htmlspecialchars($_GET["erreur"])){
-    case 0:
-        echo "<script>alert('Case Reglement Donnée non cochée')</script>";
-    case 1:
-        echo "<script>alert('Mail invalide')</script>";
-    case 2:
-        echo "<script>alert('Champs invalides (vides ou mot de passes non correspondants)')</script>";
-    case 3:
-        echo "<script>alert('Le mot de passe doit respecter le patterne suivant : minimum 8 charactères, minimum 1 chiffre, minimum 1 miniscule, minimum 1 majuscule')</script>";
+
+if(isset($_GET["erreur"])){
+    switch(htmlspecialchars($_GET["erreur"])){
+        case 0:
+            echo "<script>alert('Case Reglement Donnée non cochée')</script>";
+            break;
+        case 1:
+            echo "<script>alert('Mail invalide')</script>";
+            break;
+        case 2:
+            echo "<script>alert('Champs invalides (vides ou mot de passes non correspondants)')</script>";
+            break;
+        case 3:
+            echo "<script>alert('Le mot de passe doit respecter le patterne suivant : minimum 8 charactères, minimum 1 chiffre, minimum 1 miniscule, minimum 1 majuscule')</script>";
+            break;
+        case 4:
+            echo "<script>alert('Une erreur a eu lieu.')</script>";
+            break;
+    }
 }
+
+
 ?>
 <form class="box" action="inscription.php" method="post" name="inscription">
     <h1 class="box-title">Inscription</h1>

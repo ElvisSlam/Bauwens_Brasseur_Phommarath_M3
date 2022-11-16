@@ -4,7 +4,7 @@ function connexionBDD()
 {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = 'newpass';
+    $password = '';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -304,6 +304,16 @@ function deleteData($lePdo, $login) {
         if($requete2->execute()){
             $log = true;
         }
+    }
+    return $log;
+}
+
+function connectInscri($lePdo, $login) {
+    $log = false;
+    $requete = $lePdo->prepare("INSERT INTO connexion(login, dateConnexion) VALUES(:login, NOW())");
+    $bv1 = $requete->bindValue(':login',$login,PDO::PARAM_STR);
+    if($requete->execute()){
+        $log = true;
     }
     return $log;
 }
