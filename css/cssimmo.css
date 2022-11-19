@@ -55,8 +55,14 @@ li, a, button {
     color: black;
     text-decoration: none;
 }
+.navbar a,.navbar a:hover, .navbar a:focus
+{
+color: white;
+}
 
-
+.navbar ul.dropdown-menu{
+    color:black;
+}
 .cont_liste {
     background-color: #edf0f1;
     display: flex;
@@ -129,7 +135,6 @@ footer {
     opacity: 1;
 }
 
-.nav-link {}
 
 form {
     width: 100%;
@@ -156,7 +161,7 @@ input[type=text], input[type=password] {
 }
 
 
-input[type=submit] {
+input[type=submit], button{
     background-color: #53af57;
     color: white;
     padding: 14px 20px;

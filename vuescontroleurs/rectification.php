@@ -11,9 +11,9 @@ $requete = recupInfo($pdo, $_SESSION['username']);
     <label for="">Email:</label>
     <input type="text" class="box-input" value=<?php echo $email ?> disabled>
     <label for="">Nom:</label>
-    <input type="text" class="box-input" name="nom" value=<?php echo $requete['nom'] ?> placeholder="nom">
+    <input type="text" class="box-input" name="nom"  placeholder="nom">
     <label for="">Prenom:</label>
-    <input type="text" class="box-input" name="prenom" value=<?php echo $requete['prenom'] ?> placeholder="prenom">
+    <input type="text" class="box-input" name="prenom"  placeholder="prenom">
     <label for="">Mot de passe:</label>
     <input type="password" class="box-input" name="modifmdp" placeholder="mot de passe">
     <input type="submit" value="Modifier" name="submit" class="box-button">
