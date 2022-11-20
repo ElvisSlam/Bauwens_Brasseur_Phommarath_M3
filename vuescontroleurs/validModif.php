@@ -3,6 +3,9 @@
 include_once '../modeles/mesFonctionsAccesBDD.php';
 session_start();
 
+if (isset($_SESSION['username'])) {
+    header('Location: formConnexion.php');
+}
 $reference = $_POST['modifreference'];
 $ville = $_POST['modifville'];
 $type = $_POST['modiftype'];

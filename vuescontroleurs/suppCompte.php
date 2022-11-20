@@ -1,9 +1,14 @@
 <?php
 include_once '../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
+$pdo = connexionBDD();
+$req = recupInfo($pdo, $_SESSION['username']);
 
-if(isset($_GET['erreur'])){
-    if($_GET['erreur'] == "mdp"){
+if (isset($_SESSION['username'])) {
+    header('Location: formConnexion.php');
+}
+if (isset($_GET['erreur'])) {
+    if ($_GET['erreur'] == "mdp") {
         echo '
         <br><br>
         <div class="row row d-flex justify-content-center">
@@ -14,14 +19,16 @@ if(isset($_GET['erreur'])){
     }
 }
 ?>
-<form class="box" action="verif.php" method="post" name="login">
-    <h1 class="box-title">Connexion</h1>
-    <input type="text" class="box-input" name="username" placeholder="Nom d'utilisateur">
+
+<br><br><br><br>
+<form class="box" action="suppression.php" method="post" name="login">
     <input type="password" class="box-input" name="password" placeholder="Mot de passe">
-    <input type="submit" value="Connexion " name="submit" class="box-button">
+    <input type="submit" value="Supprimer votre compte" name="submit" class="box-button">
 </form>
+
 <?php
 include_once '../inc/piedDePage.inc';
 ?>
 </body>
+
 </html>

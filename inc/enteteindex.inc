@@ -40,7 +40,8 @@
             ?>
             <li><a class="dropdown-item" href="vuescontroleurs/info.php?path=info.json" style="color:black">Informations personnelles</a></li>
             
-            <li><a class="dropdown-item" href="vuescontroleurs/rectification.php" style="color:black">rectification</a></li>
+            <li><a class="dropdown-item" href="vuescontroleurs/rectification.php" style="color:black">Modifier mes données</a></li>
+            <li><a class="dropdown-item" href="vuescontroleurs/suppCompte.php" style="color:black">Supprimer mon compte</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="vuescontroleurs/Deconnexion.php" style="color:black">Deconnexion</a></li>
             <?php

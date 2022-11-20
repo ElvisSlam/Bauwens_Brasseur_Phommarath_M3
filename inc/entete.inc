@@ -38,7 +38,9 @@
             ?>
             <li><a class="dropdown-item" href="info.php?path=info.json" style="color:black">Informations personnelles</a></li>
             
-            <li><a class="dropdown-item" href="rectification.php" style="color:black">rectification</a></li>
+            <li><a class="dropdown-item" href="rectification.php" style="color:black">Modifier mes données</a></li>
+            
+            <li><a class="dropdown-item" href="suppCompte.php" style="color:black">Supprimer mon compte</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="Deconnexion.php" style="color:black">Deconnexion</a></li>
             <?php

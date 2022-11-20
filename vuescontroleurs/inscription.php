@@ -32,6 +32,7 @@ if (isset($_POST['donnees'])) {
 
     if (Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)) {
         session_start();
+        insertConnexion($lePdo, $email);
         $_SESSION['username'] = $email;
         $id_session = session_id();
         header('Location: listeBiens.php?' . $_SESSION['username']);

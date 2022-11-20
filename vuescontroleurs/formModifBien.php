@@ -2,6 +2,10 @@
 include_once '../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
 session_start();
+
+if (isset($_SESSION['username'])) {
+    header('Location: formConnexion.php');
+}
 ?>
 <form class="box" action="validModif.php" method="post" name="Modifier">
     <h1 class="box-title">Modifier un bien</h1>

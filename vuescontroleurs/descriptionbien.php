@@ -1,5 +1,5 @@
 <?php
-include_once'../inc/entete.inc'
+include_once '../inc/entete.inc'
 ?>
 <script src="../js/html2canvas.min.js"></script>
 <script src="../js/jspdf.min.js"></script>

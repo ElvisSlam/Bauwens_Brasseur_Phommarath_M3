@@ -238,7 +238,7 @@ function Inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
 
 function recupConnexion($pdo, $username)
 {
-    $requete = $pdo->prepare("SELECT login FROM Connexion where login =:username");
+    $requete = $pdo->prepare("SELECT login FROM connexion where login =:username");
     $bv1 = $requete->bindValue(':username', $username, PDO::PARAM_STR);
     $exec = $requete->execute();
     $resultat = $requete->fetch();
@@ -248,13 +248,14 @@ function recupConnexion($pdo, $username)
 function insertConnexion($lePdo, $username)
 {
     if (recupConnexion($lePdo, $username) == false) {
-        $req = $lePdo->prepare("UPDATE Connexion Set dateConnexion = 'NOW()' WHERE login=:username");
+        $req = $lePdo->prepare("INSERT INTO connexion (login,dateConnexion) VALUES(:username, NOW())");
         $bv1 = $req->bindValue(':username', $username, PDO::PARAM_STR);
         $req->execute();
         $resultat = $req->fetch();
         return $resultat;
     } else {
-        $req = $lePdo->prepare("INSERT INTO Connexion (login, dateConnexion) VALUES('" . $username . "', NOW())");
+        $req = $lePdo->prepare("UPDATE connexion Set dateConnexion = NOW() WHERE login=:username");
+        $bv1 = $req->bindValue(':username', $username, PDO::PARAM_STR);
         $req->execute();
         $resultat = $req->fetch();
         return $resultat;
@@ -263,18 +264,11 @@ function insertConnexion($lePdo, $username)
 
 function insertDeconnexion($lePdo, $username)
 {
-    if (recupConnexion($lePdo, $username) == false) {
-        $req = $lePdo->prepare("UPDATE Connexion Set dateDeconnexion = 'NOW()' WHERE login=:username");
-        $bv1 = $req->bindValue(':username', $username, PDO::PARAM_STR);
-        $req->execute();
-        $resultat = $req->fetch();
-        return $resultat;
-    } else {
-        $req = $lePdo->prepare("INSERT INTO Connexion ( login , dateDeconnexion) VALUES('" . $username . "', NOW())");
-        $req->execute();
-        $resultat = $req->fetch();
-        return $resultat;
-    }
+    $req = $lePdo->prepare("UPDATE Connexion Set dateDeconnexion = NOW() WHERE login=:username");
+    $bv1 = $req->bindValue(':username', $username, PDO::PARAM_STR);
+    $req->execute();
+    $resultat = $req->fetch();
+    return $resultat;
 }
 
 function recupInfo($pdo, $email)
@@ -296,4 +290,19 @@ function modifInfo($pdo, $modifnom, $email, $modifprenom, $modifpassword)
     $bv3 = $requete->bindValue(':modifmdp', $password, PDO::PARAM_STR);
     $exec = $requete->execute();
     return $exec;
+}
+
+function SuppConnexion($pdo, $username)
+{
+    $requete1 = $pdo->prepare("Delete from connexion WHERE login = :username");
+    $bv1 = $requete1->bindValue(':username', $username);
+    $exec = $requete1->execute();
+    return $exec;
+}
+function suppInfo($pdo, $username)
+{
+        $requete2 = $pdo->prepare("Delete from utilisateurs WHERE email = :username");
+        $bv1 = $requete2->bindValue(':username', $username);
+        $exec = $requete2->execute();
+        return $exec;
 }

@@ -1,5 +1,8 @@
 <?php
-include_once'../inc/entete.inc';
+include_once '../inc/entete.inc';
+if (isset($_SESSION['username'])) {
+    header('Location: formConnexion.php');
+}
 ?>
 <form class="box" action="formAjouteBien.php" method="post" name="login">
     <input type="submit" value="Ajouter un bien" name="submit" class="box-button">

@@ -2,6 +2,11 @@
 
 include_once '../modeles/mesFonctionsAccesBDD.php';
 
+
+if (isset($_SESSION['username'])) {
+    header('Location: formConnexion.php');
+}
+
 $username = $_POST['username'];
 $password = $_POST['password'];
 $lePdo = connexionBDD();
@@ -17,6 +22,6 @@ foreach ($res as $result) {
         $_SESSION['username'] = $username;
         header('Location: ../index.php');
     } else {
-        echo '<h1>erreur de connexion </h1>';
+        header('Location: formConnexion.php?erreur=mdp');
     }
 }

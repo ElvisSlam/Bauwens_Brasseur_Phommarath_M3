@@ -1,6 +1,9 @@
 <?php
-include_once'../inc/entete.inc';
+include_once '../inc/entete.inc';
 require('../modeles/mesFonctionsAccesBDD.php');
+if (isset($_SESSION['username'])) {
+    header('Location: formConnexion.php');
+}
 
 ?>
 <form class="box" action="validAjout.php" method="post" name="Ajout">
