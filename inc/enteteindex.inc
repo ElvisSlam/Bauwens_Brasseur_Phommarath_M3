@@ -39,17 +39,21 @@
             <li><a class="dropdown-item" href="vuescontroleurs/supp.php" style="color:black">Supprimer vos données</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="vuescontroleurs/Deconnexion.php" style="color:black">Deconnexion</a></li>
+            </ul>
+            </li>
+            </ul>
+            <span class="navbar-text" style="color: white;">Connecté en tant que: <?php echo ($_SESSION["username"]); ?></span>
             <?php
             } else {
             ?>
             <li><a class="dropdown-item" href="vuescontroleurs/formConnexion.php" style="color:black">Se connecter</a></li>
             <li><a class="dropdown-item" href="vuescontroleurs/formInscription.php" style="color:black">S'inscrire</a></li>
+            </ul>
+            </li>
+            </ul>
             <?php 
             }
             ?>
-          </ul>
-        </li>
-      </ul>
     </div>
   </div>
 </nav>

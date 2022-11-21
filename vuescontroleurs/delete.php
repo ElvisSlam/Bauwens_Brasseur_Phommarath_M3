@@ -2,8 +2,8 @@
 require('../modeles/mesFonctionsAccesBDD.php');
 session_start();
 $lePdo = connexionBDD();
-$login = $_SESSION["username"];
-$mail = $_GET["smail"];
+$login = getPassword($lePdo, $_SESSION["username"]);
+$mail = password_hash($_GET["smail"], PASSWORD_BCRYPT);
 if(strcmp($mail, $login)==0){
     if(deleteData($lePdo, $login)){
         unset($_SESSION['username']);

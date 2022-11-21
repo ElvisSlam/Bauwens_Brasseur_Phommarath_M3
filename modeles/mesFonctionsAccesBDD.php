@@ -4,7 +4,7 @@ function connexionBDD()
 {
     $bdd = 'mysql:host=localhost;dbname=ap_mission3';
     $user = 'root';
-    $password = '';
+    $password = 'newpass';
     try {
 
         $ObjConnexion = new PDO($bdd, $user, $password, array(
@@ -216,6 +216,7 @@ function getLaRef($pdo)
 
 function inscription($lePdo, $Nom, $Prenom, $email, $password, $repeatpassword)
 {
+    $email = encrypt($email);
     if ($Nom && $Prenom && $email && $password && $repeatpassword) {
         if ($password == $repeatpassword) {
             $password = password_hash($password, PASSWORD_BCRYPT);
@@ -316,4 +317,30 @@ function connectInscri($lePdo, $login) {
         $log = true;
     }
     return $log;
+}
+
+function encrypt($info){
+    $text = '';
+    $cipher = "aes-256-cbc";
+    $pass = "123456789";
+    if (in_array($cipher, openssl_get_cipher_methods())){
+        $text = openssl_encrypt($info, $cipher, $pass);
+    }
+    return $text;
+}
+
+function decrypt($info){
+    $cipher = "aes-256-cbc";
+    $pass = "123456789";
+    $text = openssl_decrypt($info, $cipher, $pass);
+    return $text;
+}
+
+function getPassword($lePdo, $login){
+    $requete = $lePdo->prepare("SELECT mdp FROM utilisateurs WHERE email = :login");
+    $bv1 = $requete->bindValue(':login',$login,PDO::PARAM_STR);
+    if($requete->execute()){
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+    }
+    return($resultat);
 }
