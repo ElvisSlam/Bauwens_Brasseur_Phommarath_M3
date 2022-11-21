@@ -1,6 +1,6 @@
 <?php
 include_once '../inc/entete.inc';
-if (isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
     header('Location: formConnexion.php');
 }
 ?>

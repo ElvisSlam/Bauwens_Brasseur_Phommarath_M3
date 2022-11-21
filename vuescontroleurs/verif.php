@@ -3,25 +3,22 @@
 include_once '../modeles/mesFonctionsAccesBDD.php';
 
 
-if (isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
     header('Location: formConnexion.php');
 }
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 $lePdo = connexionBDD();
-$requete = $lePdo->prepare('SELECT * FROM utilisateurs');
-$requete->execute();
-$res = $requete->fetchAll();
 
+$res = recupInfo($lePdo, $username);
 
-foreach ($res as $result) {
-    if ($result['email'] == $username && password_verify($password, $result['mdp'])) {
-        insertConnexion($lePdo, $username);
-        session_start();
-        $_SESSION['username'] = $username;
-        header('Location: ../index.php');
-    } else {
-        header('Location: formConnexion.php?erreur=mdp');
-    }
+if ($res['email'] == $username && password_verify($password, $res['mdp'])) {
+    insertConnexion($lePdo, $username);
+    session_start();
+    $_SESSION['username'] = $username;
+    header('Location: ../index.php');
+} else {
+    header('Location: suppCompte.php?erreur=mdp');
 }
+
