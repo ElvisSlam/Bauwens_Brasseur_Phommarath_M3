@@ -344,3 +344,17 @@ function getPassword($lePdo, $login){
     }
     return($resultat);
 }
+
+
+function getDesc($lePdo, $id){
+    if($id>0){
+        $requete = $lePdo->prepare("SELECT * FROM biens WHERE reference = :id");
+        $bv1 = $requete->bindValue(':id',$id,PDO::PARAM_INT);
+    } else {
+        $requete = $lePdo->prepare("SELECT * FROM biens");
+    }
+    if($requete->execute()){
+        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
+    return($resultat);
+}
