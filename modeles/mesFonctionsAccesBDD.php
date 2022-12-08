@@ -37,7 +37,7 @@ function testlogin($pdo, $username)
 
 function AjoutBien($pdo, $reference, $ville, $type, $prix, $description, $surface, $nbpiece, $jardin)
 {
-    $requete = $pdo->prepare("INSERT INTO biens VALUES (:reference,:ville,:type,:prix,:description,:surface,:nbpiece,:jardin)");
+    $requete = $pdo->prepare("INSERT INTO biens VALUES (:reference,:ville,:type,:description,:prix,:surface,:nbpiece,:jardin)");
     $bv1 = $requete->bindValue(':reference', $reference, PDO::PARAM_STR);
     $bv2 = $requete->bindValue(':ville', $ville, PDO::PARAM_STR);
     $bv3 = $requete->bindValue(':type', $type, PDO::PARAM_STR);
@@ -354,7 +354,7 @@ function getDesc($lePdo, $id){
         $requete = $lePdo->prepare("SELECT * FROM biens");
     }
     if($requete->execute()){
-        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
     }
     return($resultat);
 }
